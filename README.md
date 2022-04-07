@@ -4,3 +4,4 @@ Proyecto PRODE para la materia Análisis y Diseño de Sistemas
 Integrantes:
 
 - Joel D'Autilio
+- Pablo Andrés Rossi
