@@ -2,4 +2,5 @@
 Proyecto PRODE para la materia Análisis y Diseño de Sistemas
 
 Integrantes:
-    - Joel D'Autilio
+
+- Joel D'Autilio
