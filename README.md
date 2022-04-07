@@ -5,3 +5,4 @@ Integrantes:
 
 - Joel D'Autilio
 - Pablo Andrés Rossi
+- Jonathan Jair Rojo
