@@ -9,22 +9,26 @@ por
 
 ## Contexto
 
-En vísperas del mundial 2022, se requirió por parte del equipo docente, desarrollar un sistema que maneje un Prode que incluya, en un principio, al campeonato mencionado. El PRODE es una plataforma que permite realizar pronósticos sobre los resultados de los partidos pertenecientes al torneo. Dependiendo de la cantidad y tipo de los aciertos, se ganan puntos que se acumulan a lo largo del campeonato.
+En vísperas del mundial 2022, se requirió por parte del equipo docente, desarrollar un sistema que maneje un Prode. El PRODE es una plataforma que permite realizar pronósticos sobre los resultados de los partidos pertenecientes a un torneo. Dependiendo de la cantidad y tipo de los aciertos, se ganan puntos que se acumulan a lo largo del campeonato.
 
-El sistema va a constar de equipos de los cuales se conocen su nombre, un código interno y país al que pertenecen. En primera instancia se registran ocho grupos identificados con una letra (A..H), que están conformados por cuatro equipos, a los cuales se les asigna una posición (1..4) dentro del grupo.
+En un principio, el PRODE surgió como un modo de apostar sobre campeonatos de fútbol argentino; sin embargo, es posible realizar pronósticos sobre muchas disciplinas competitivas.
 
-Se registran los partidos que constan de un identificador único, fecha, hora, equipos participantes, tipo de partido (fase de grupos, octavos, ...) y resultado. Junto con el resultado se incluye el equipo ganador y la cantidad de goles por equipo. Además, en los partidos que no pertenecen a la fase de grupos, en caso de empate se registra el resultado de los penales.
+El sistema registra torneos, que son conjuntos de partidos de los cuales se decide un campeón, ya sea por acumulación de puntos o a través de la eliminación del resto de los contrincantes. De los torneos se registra un identificador único, su nombre, a qué deporte pertenece, sus partidos y los equipos participantes. Generalmente, los partidos pertenecientes a un torneo están organizando en fases, de las cuales se registra su nombre.
 
-De los usuarios se registra un nombre de usuario (único), sus predicciones (ganador y puntaje de cada partido) y puntos acumulados. Existe un grupo especializado de usuarios que son los administradores, que tiene acceso a diferentes funciones tales como agregar, eliminar y modificar grupos, equipos y partidos, y modificar permisos de otros usuarios.
+Este sistema sólo soporta partidos donde se enfrentan dos equipos. Los partidos se registran con fecha, hora, equipos participantes, si hubo empate, si permite penales, y equipo ganador (que puede no haber). No puede haber penales si no hubo empate.
+
+De los equipos se conoce el nombre, un identificador único, país al que pertenecen y deporte.
+
+De los países y los deportes sólo se registra el nombre.
+
+De los usuarios se registra un nombre de usuario (único). Hay usuarios administradores y usuarios participantes. Los administradores tienen acceso a diferentes funciones tales como agregar, eliminar y modificar torneos, equipos y partidos, y modificar permisos de otros usuarios. De los participantes se almacenan sus predicciones (ganador/empate/penales). Sus puntos acumulados se calculan a partir de sus predicciones y de los partidos ya jugados.
 
 Además de predecir resultados de partidos, un usuario puede dar su predicción sobre quiénes serán el campeón y el subcampeón del torneo.
 
 Los puntajes se calculan de la siguiente manera:
 
-* 1 punto por acertar el pronóstico del partido (equipo ganador)
-* 2 puntos más por acertar el resultado (cantidad de goles)
+* 1 punto por acertar el pronóstico del partido (equipo ganador o empate)
 * 1 punto más por acertar el pronóstico de penales (equipo ganador) en caso de haber
-* 4 puntos más por acertar el resultado de penales (cantidad de goles) en caso de haber
 * 5 puntos más por acertar el equipo ganador del torneo
 * 3 puntos más por acertar el equipo subcampeón del torneo
 
