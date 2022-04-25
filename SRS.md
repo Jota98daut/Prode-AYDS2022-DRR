@@ -66,35 +66,35 @@ _Postcondición: Se modifican los permisos de la cuenta objetivo_
 
 El usuario administrado selecciona la opción de modificar permisos, elige una cuenta, y le otorga o remueve permisos.
 
-### 5. Agregar grupo
+### 5. Agregar torneo
 
 _Precondición: Hay una sesión de administrador iniciada_
 
-_Postcondición: Existe un nuevo grupo_
+_Postcondición: Existe un nuevo torneo_
 
-El administrador selecciona la opción de agregar grupo. Se le solicita un nombre. Si no existe un grupo con el mismo nombre, se agrega. Cas contrario, se notifica el error al administrador.
+El administrador selecciona la opción de agregar torneo. Se le solicita un nombre y el deporte. Si no existe un torneo con el mismo nombre, se agrega. Caso contrario, se notifica el error al administrador.
 
-### 6. Eliminar grupo
+### 6. Eliminar torneo
 
-_Precondición: Hay una sesión de administrador iniciada. existe al menos un grupo._
+_Precondición: Hay una sesión de administrador iniciada. existe al menos un torneo._
 
-_Postcondición: El grupo es eliminado_
+_Postcondición: El torneo es eliminado_
 
-El administrador selecciona la opción de eliminar grupo. Ingresa el nombre del grupo y en caso de existir, se elimina. Caso contrario, se notifica el error al administrador.
+El administrador selecciona la opción de eliminar torneo. Ingresa el nombre del torneo y en caso de existir, se elimina. Caso contrario, se notifica el error al administrador.
 
-### 7. Modificar Grupo
+### 7. Modificar torneo
 
-_Precondición: Hay una sesión de administrador iniciada. Hay un grupo creado._
+_Precondición: Hay una sesión de administrador iniciada. Hay un torneo creado._
 
-_Postcondición: El grupo es modificado_
+_Postcondición: El torneo es modificado_
 
-El administrador selecciona la opción de modificar grupo. Se solicita ingresar el nombre del grupo y en caso de existir, se cambia uno o más de los equipos que conforman el grupo.
+El administrador selecciona la opción de modificar torneo. Se solicita ingresar el nombre del torneo y en caso de existir, se modifica alguna fase o partido del torneo.
 
 ### 8. Agregar equipo
 
 _Precondición: Hay una sesión de administrador iniciada_
 
-_Postcondición: Existe un nuevo grupo_
+_Postcondición: Existe un nuevo equipo_
 
 El administrador selecciona la opción de agregar equipo. Se le solicita un nombre y un país y el código de un grupo. Si los datos son válidos, no existe otro equipo con el mismo nombre y país, y el grupo no se encuentra lleno, se agrega un equipo con la información dada. Caso contrario, se notifica el error al administrador.
 
@@ -136,7 +136,7 @@ _Precondición: Hay una sesión iniciada._
 
 _Postcondición: Se agrega una nueva predicción._
 
-El usuario selecciona la opción de agregar predicción. Se solicita la fase del torneo, el partido, el equipo ganador y la cantidad de goles de cada equipo. Si los datos son válidos y no existe una predicción para el partido, se agrega. Caso contrario, se notifica el error.
+El usuario selecciona la opción de agregar predicción. Se solicita la fase del torneo, el partido si predice empate, si predice ganador, y equipo ganador (si seleccionó predecir ganador). Si los datos son válidos y no existe una predicción para el partido, se agrega. Caso contrario, se notifica el error.
 
 ### 14. Agregar predicción del campeón
 
@@ -144,25 +144,17 @@ _Precondición: Hay una sesión iniciada._
 
 _Postcondición: Se agrega una nueva predicción para el campeón._
 
-El usuario selecciona la opción de predecir el campeón. Se solicita el nombre del equipo y en caso de ser válido, se agrega la predicción. En otro caso, se notifica el error.
+El usuario selecciona la opción de predecir el campeón. Se solicita el torneo y el nombre del equipo y en caso de ser válido, se agrega la predicción. En otro caso, se notifica el error.
 
-### 15. Agregar predicción del subcampeón
-
-_Precondición: Hay una sesión iniciada._
-
-_Postcondición: Se agrega una nueva predicción para el subcampeón._
-
-El usuario selecciona la opción de predecir el subcampeón. Se solicita el nombre del equipo y en caso de ser válido, se agrega la predicción. En otro caso, se notifica el error.
-
-### 16. Mostrar partidos
+### 15. Mostrar partidos
 
 _Precondición: Hay una sesión iniciada._
 
 _Postcondición: Se muestran los partidos existentes._
 
-El usuario selecciona la opción de ver partidos. Se muestra una lista de los partidos categorizados por la fase del torneo a la que pertenecen, con su fecha, hora y equipos participantes. En caso de que el partido ya se haya jugado, se muestra el resultado con equipo ganador y cantidad de goles.
+El usuario selecciona la opción de ver partidos. Se muestra una lista de los partidos categorizados por torneo y la fase a la que pertenecen, con su fecha, hora y equipos participantes. En caso de que el partido ya se haya jugado, se muestra el resultado con equipo ganador (si existe).
 
-### 17. Mostrar puntos acumulados
+### 16. Mostrar puntos acumulados
 
 _Precondición: Hay una sesión iniciada._
 
@@ -170,6 +162,54 @@ _Postcondición: Se muestra por pantalla los puntos acumulados del usuario._
 
 El usuario selecciona la opción de mostrar puntos acumulados. Se muestran los puntos acumulados.
 
+### 17. Agregar deporte
+
+_Precondición: Hay una sesión de administrador iniciada._
+
+_Postcondición: Existe un nuevo deporte._
+
+El administrador selecciona la opción de agregar deporte. Se solicita el nombre del deporte y en caso de no estar creado, se agrega el deporte. En otro caso, se notifica el error.
+
+### 18. Modificar deporte
+
+_Precondición: Hay una sesión de administrador iniciada. Existe al menos un deporte._
+
+_Postcondición: El deporte es modificado._
+
+El administrador selecciona la opción de modificar deporte. Se solicita el nombre del deporte y en caso de no estar creado, se agrega el deporte. En otro caso, se notifica el error.
+
+### 19. Eliminar deporte
+
+_Precondición: Hay una sesión de administrador iniciada. Existe al menos un deporte._
+
+_Postcondición: El deporte es eliminado._
+
+El administrador selecciona la opción de eliminar deporte. Se solicita el nombre del deporte y en caso de existir, se elimina el deporte. En otro caso, se notifica el error.
+
+### 20. Agregar fase
+
+_Precondición: Hay una sesión de administrador iniciada._
+
+_Postcondición: Existe una nueva fase._
+
+El administrador selecciona la opción de agregar fase. Se solicita el nombre de la fase y si es posible la definicion por penales, en caso de estar creada se notifica el error.
+
+### 21. Eliminar fase
+_Precondición: Hay una sesión de administrador iniciada. Existe al menos una fase._
+
+_Postcondición: La fase es eliminada._
+
+El administrador selecciona la opción de eliminar fase. Se solicita el nombre de la fase y en caso de existir, se elimina la fase. En otro caso, se notifica el error.
+
+### 22. Modificar fase
+
+_Precondición: Hay una sesión de administrador iniciada._
+
+_Postcondición: La fase es modificada._
+
+El administrador selecciona la opción de modificar fase. Se solicita el nombre de la fase y en caso de no estar creada se notifica el error.
+
+
 # Modelo de análisis
 
-[![](https://mermaid.ink/img/pako:eNqFU01PwzAM_StRjmibNo4VFxgckZA2bpGQ1YQtonWq1NVUjf133DT9Wgf0Usd-ebafnbNMnTYykWkGZfls4eAhV6gwnMXeVR4hN0hnhYI_6h0fViu8DNBd4XyHahDTIMHBTIKNVRiEjKwpJ9j30ngRsRXbM7JHnVscjm8Z1MbHC4WzSFO-V6D02BFqoJicbFeG9nCa3Hgy1OOvY3sDeRcktoMMN3veugrJ1-I3TbZHyAvrkLM1zkFqoeR6tbpTUiyXbG_YCOIKcYXajFGtHYRWGH7x7jgctGCWpgn23t8Ki6RgRcuICrX0NOsJ7mQRjVfYdTrP11AoDBN9-OZAHN3gaIensP2PGWKqoE4zkLkosZl5MFYc6u-L5DIHwW-wtaX-g-nV_6PiEYVcyNz4HKzmFxb2QEk6Gl4EmbCpwX8pyUvBuKpoVvNFW3JeJp-QlWYhoSK3qzGVCfnKdKD4SiPq8gMryjXz)](https://mermaid.live/edit#pako:eNqFU01PwzAM_StRjmibNo4VFxgckZA2bpGQ1YQtonWq1NVUjf133DT9Wgf0Usd-ebafnbNMnTYykWkGZfls4eAhV6gwnMXeVR4hN0hnhYI_6h0fViu8DNBd4XyHahDTIMHBTIKNVRiEjKwpJ9j30ngRsRXbM7JHnVscjm8Z1MbHC4WzSFO-V6D02BFqoJicbFeG9nCa3Hgy1OOvY3sDeRcktoMMN3veugrJ1-I3TbZHyAvrkLM1zkFqoeR6tbpTUiyXbG_YCOIKcYXajFGtHYRWGH7x7jgctGCWpgn23t8Ki6RgRcuICrX0NOsJ7mQRjVfYdTrP11AoDBN9-OZAHN3gaIensP2PGWKqoE4zkLkosZl5MFYc6u-L5DIHwW-wtaX-g-nV_6PiEYVcyNz4HKzmFxb2QEk6Gl4EmbCpwX8pyUvBuKpoVvNFW3JeJp-QlWYhoSK3qzGVCfnKdKD4SiPq8gMryjXz)
+[![](https://mermaid.ink/img/pako:eNqFU01PwzAM_StRjmibNo4VFxgckZA2bpGQtYQtonWq1NU0jf133CT9Whn0Un88PzvPyVnunDYyk7scqurZwt5DoVBh8MXW1R6hMEhnhYI_6gIfVsdQ4yq89EWb0vkWP00S7M0o2VilQcjJmmqEfa-MFwlbsz0he9SFxd59y-FkfCoonUUa870C7Q4toQZKzcm2Y2gPx1HFk6EOf53bGijaJLF9W5C1q5H8SdzSZH2AorQOuVsT7EUXSi4XizslxXzO9oqNIK4QV6hVRN1FWHSC0grDLxWP8kEN5mmOwdH7rssgLbKSNa0SKkyzanHLEe5oEY1X2J41NhwSNhQKw04fvjmRltcH4voUxv-QIbUK-jQrmcqSDjNNponD_N2QPGYv-S9scdR_MJ3-f0w8oJAzWRhfgNX82sJNUJIOhq-CzNjU4L-U5GvBuLpsLueLtuS8zD4hr8xMQk1uc8KdzMjXpgWlF5tQlx9Uhzky)](https://mermaid.live/edit#pako:eNqFU01PwzAM_StRjmibNo4VFxgckZA2bpGQtYQtonWq1NU0jf133CT9Whn0Un88PzvPyVnunDYyk7scqurZwt5DoVBh8MXW1R6hMEhnhYI_6gIfVsdQ4yq89EWb0vkWP00S7M0o2VilQcjJmmqEfa-MFwlbsz0he9SFxd59y-FkfCoonUUa870C7Q4toQZKzcm2Y2gPx1HFk6EOf53bGijaJLF9W5C1q5H8SdzSZH2AorQOuVsT7EUXSi4XizslxXzO9oqNIK4QV6hVRN1FWHSC0grDLxWP8kEN5mmOwdH7rssgLbKSNa0SKkyzanHLEe5oEY1X2J41NhwSNhQKw04fvjmRltcH4voUxv-QIbUK-jQrmcqSDjNNponD_N2QPGYv-S9scdR_MJ3-f0w8oJAzWRhfgNX82sJNUJIOhq-CzNjU4L-U5GvBuLpsLueLtuS8zD4hr8xMQk1uc8KdzMjXpgWlF5tQlx9Uhzky)
