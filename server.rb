@@ -4,12 +4,14 @@ require "sinatra/activerecord"
 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
-class User
-    def initialize(username,password)
-        @username = username
-        @password = password
+require_relative 'models/user'
+
+class CreateUsers < ActiveRecord::Migration[7.0]
+  def change
+    create_table :users do |t|
+      t.string :name
     end
-    attr_accessor :username,:password
+  end
 end
 
 class App < Sinatra::Application
@@ -33,7 +35,7 @@ class App < Sinatra::Application
       'Hello World!'
     end
     
-    users = [User.new("joel","1234")];
+    users = [];
 
     post '/login' do
         users.to_s
