@@ -1,3 +1,5 @@
 class Bet < ActiveRecord::Base
-    has_many :teams
+    has_one :team
+    has_one :match
+    has_one :player
 end
