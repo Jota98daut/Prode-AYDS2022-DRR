@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
 end
 
-clas Player < User
+class Player < User
 end
