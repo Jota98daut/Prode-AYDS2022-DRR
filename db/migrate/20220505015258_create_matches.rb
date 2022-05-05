@@ -9,7 +9,7 @@ class CreateMatches < ActiveRecord::Migration[7.0]
       # t.has_one :team # participant 1
       # t.has_one :team # participant 2
       # t.has_one :team # winner
-      # t.belongs_to :stage
+      t.belongs_to :stage
     end
   end
 end

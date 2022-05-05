@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_022139) do
     t.date "date"
     t.time "time"
     t.boolean "draw"
+    t.integer "stage_id"
+    t.index ["stage_id"], name: "index_matches_on_stage_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -38,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_022139) do
   create_table "stages", force: :cascade do |t|
     t.string "name"
     t.boolean "penalties"
+    t.integer "tournament_id"
+    t.index ["tournament_id"], name: "index_stages_on_tournament_id"
   end
 
   create_table "teams", force: :cascade do |t|

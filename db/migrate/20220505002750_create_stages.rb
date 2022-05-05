@@ -4,7 +4,7 @@ class CreateStages < ActiveRecord::Migration[7.0]
       t.string :name
       t.boolean :penalties
 
-      # t.belongs_to :tournament
+      t.belongs_to :tournament
       # t.has_many :matches
     end
   end
