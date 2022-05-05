@@ -5,11 +5,11 @@ class CreateMatches < ActiveRecord::Migration[7.0]
       t.time :time
       t.boolean :draw
 
-      has_many :bets
-      has_one :team # participant 1
-      has_one :team # participant 2
-      has_one :team # winner
-      belongs_to :stage
+      # t.has_many :bets
+      # t.has_one :team # participant 1
+      # t.has_one :team # participant 2
+      # t.has_one :team # winner
+      # t.belongs_to :stage
     end
   end
 end

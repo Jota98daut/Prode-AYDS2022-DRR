@@ -3,7 +3,7 @@ class CreateCountries < ActiveRecord::Migration[7.0]
     create_table :countries do |t|
       t.string :name
 
-      has_many :teams
+      # t.has_many :teams
     end
   end
 end

@@ -1,3 +1,3 @@
-class User < ActiveRecord::Base
+class Stage < ActiveRecord::Base
     belongs_to :tournament
 end
