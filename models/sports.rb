@@ -1,3 +1,3 @@
-class User < ActiveRecord::Base
+class Sport < ActiveRecord::Base
     has_many :tournaments
 end
