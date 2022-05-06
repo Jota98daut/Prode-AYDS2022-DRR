@@ -5,11 +5,12 @@ class CreateMatches < ActiveRecord::Migration[7.0]
       t.time :time
       t.boolean :draw
 
-      # t.has_many :bets
-      # t.has_one :team # participant 1
-      # t.has_one :team # participant 2
-      # t.has_one :team # winner
+      t.references :home, index: true, foreign_key: { to_table: :team }
+      t.references :away, index: true, foreign_key: { to_table: :team }
+      t.references :winner, index: true, foreign_key: { to_table: :team }
       t.belongs_to :stage
+
+      t.timestamps
     end
   end
 end

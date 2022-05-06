@@ -3,9 +3,11 @@ class CreateBets < ActiveRecord::Migration[7.0]
     create_table :bets do |t|
       t.boolean :draw
 
-      # t.has_one :team
-      # t.has_one :match
-      # t.has_one :player
+      t.belongs_to :player
+      t.belongs_to :team
+      t.belongs_to :match
+
+      t.timestamps
     end
   end
 end
