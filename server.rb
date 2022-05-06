@@ -4,7 +4,7 @@ require "sinatra/activerecord"
 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
-require_relative 'models/user'
+require_relative 'models/init'
 
 class App < Sinatra::Application
 
