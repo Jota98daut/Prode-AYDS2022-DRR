@@ -1,5 +1,5 @@
 class ChampionBet < ActiveRecord::Base
-    has_one :player
-    has_one :team
-    has_one :tournament
+    belongs_to :player
+    belongs_to :team
+    belongs_to :tournament
 end

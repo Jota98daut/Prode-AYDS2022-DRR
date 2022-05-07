@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-    has_one :sport
+    belongs_to :sport
     has_many :stages
     has_many :championbets
 end

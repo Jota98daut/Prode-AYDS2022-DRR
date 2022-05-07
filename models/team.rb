@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-    has_one :country
+    belongs_to :country
     has_many :championbet
     has_many :matches
     has_many :bets
