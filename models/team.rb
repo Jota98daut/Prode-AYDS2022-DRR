@@ -4,4 +4,6 @@ class Team < ActiveRecord::Base
     has_many :matches
     has_many :bets
     has_many :won_matches, class_name: 'Match'
+
+    validates :name, presence: true
 end
