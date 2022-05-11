@@ -1,4 +1,4 @@
-require_relative '../models/team'
+require_relative '../models/init'
 
 describe 'Team' do
   describe 'when there is no name' do

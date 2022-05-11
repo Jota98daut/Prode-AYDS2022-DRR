@@ -4,4 +4,8 @@ class Match < ActiveRecord::Base
     belongs_to :away, class_name: 'Team'
     belongs_to :winner, class_name: 'Team'
     belongs_to :stage
+    
+    validates :home, presence: true
+    validates :away , presence: true
+    validates :stage , presence: true
 end
