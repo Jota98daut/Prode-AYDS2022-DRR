@@ -5,4 +5,8 @@ class Bet < ActiveRecord::Base
 
     validates :match, presence: true
     validates :player, presence: true
+
+    def points
+        3
+    end
 end

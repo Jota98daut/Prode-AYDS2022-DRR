@@ -1,0 +1,42 @@
+stage no permite penales:
+    se predijo empate y ganador:
+        no valido
+
+    gano A:
+        se predijo empate:
+            no sumo
+        se predijo A:
+            sumo 1
+        se predijo B:
+            no sumo
+
+
+    empate:
+        se predijo empate:
+            sumo 1
+        no se predijo empate:
+            no sumo
+
+
+
+stage permite penales:
+    no se predice ganador
+        no valid
+    
+    por penales:
+        se predijo penales:
+            y se predijo A:
+                sumo 2
+            y se predijo B:
+                sumo 1
+        no se predijo empate:
+            y se predijo A:
+                sumo 1
+            y se predijo B:
+                no sumo
+    en partido:
+        y se predijo A:
+            sumo 1
+        y se predijo B:
+            no sumo
+
