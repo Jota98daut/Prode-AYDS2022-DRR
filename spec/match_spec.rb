@@ -21,4 +21,12 @@ describe 'Match' do
       expect(m.valid?).to eq(false)
     end
   end
+
+  describe 'when the stage allows penalties and there is no winner' do
+    it 'should not be valid' do
+      s = Stage.new(penalties: true)
+      m = Match.new(stage: s, winner: nil)
+      expect(m.valid?).to eq(false)
+    end
+  end
 end
