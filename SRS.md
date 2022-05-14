@@ -25,7 +25,7 @@ De los usuarios se registra un nombre de usuario (único). Hay usuarios administ
 
 Además de predecir resultados de partidos, un usuario puede dar su predicción sobre quiénes serán el campeón y el subcampeón del torneo.
 
-Los puntajes se calculan de la siguiente manera:
+Los puntajes acumulados por un jugador pueden ser diferentes por cada torneo. Éstos se calculan de la siguiente manera:
 
 * 1 punto por acertar el pronóstico del partido (equipo ganador o empate)
 * 1 punto más por acertar el pronóstico de penales (equipo ganador) en caso de haber
