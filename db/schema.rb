@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_05_022139) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_14_204902) do
   create_table "bets", force: :cascade do |t|
     t.boolean "draw"
     t.integer "player_id"
@@ -59,6 +59,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_022139) do
   create_table "players", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scores", force: :cascade do |t|
+    t.integer "points"
+    t.integer "player_id"
+    t.integer "tournament_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_scores_on_player_id"
+    t.index ["tournament_id"], name: "index_scores_on_tournament_id"
   end
 
   create_table "sports", force: :cascade do |t|
