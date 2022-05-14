@@ -7,6 +7,12 @@ class Bet < ActiveRecord::Base
     validates :player, presence: true
 
     def points
-        3
+      acum = 0
+      if draw then
+        if match.draw then acum = acum+1 end
+      end
+      if team then
+        if team == match.winner then acum+1 end
+      end
     end
 end
