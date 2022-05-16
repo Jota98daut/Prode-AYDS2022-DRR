@@ -12,7 +12,8 @@ class Bet < ActiveRecord::Base
         if match.draw then acum = acum+1 end
       end
       if team then
-        if team == match.winner then acum+1 end
+        if team == match.winner then acum = acum+1 end
       end
+      return acum
     end
 end

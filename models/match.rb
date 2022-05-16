@@ -9,18 +9,17 @@ class Match < ActiveRecord::Base
     validates :away , presence: true
     validates :stage , presence: true
 
-    before_update :calculate_points, if: :result_charged?
+    after_update :calculate_points, if: :result_charged?
 
     def result_charged? 
         return draw.present? || winner.present?
     end
 
-    private
-      def calculate_points 
-        t = stage.tournament
-        bets.each do |bet|  
-            player_score = (bet.player.scores.select {|score| score.tournament == t}).first
-            player_score.points = player_score.points + bet.points
-        end
+    def calculate_points 
+      t = stage.tournament
+      bets.each do |bet|  
+          player_score = (bet.player.scores.select {|score| score.tournament == t}).first
+          player_score.update( points: player_score.points + bet.points )
       end
+    end
 end
