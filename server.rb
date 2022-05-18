@@ -16,6 +16,9 @@ class App < Sinatra::Application
     end
 
     configure do
+        # enable :sessions
+        set :sessions, true
+        set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
         set :views, 'views'
     end
 
@@ -24,15 +27,12 @@ class App < Sinatra::Application
     end
 
     get '/' do
-      'Hello World!'
+      redirect '/login'
     end
-    
-    users = [];
 
     post '/login' do
-        users.to_s
-        # usr = User.new(params['username'],params['password'])
-        # users.push(usr)
+      User.all
+      user = User.find_by(username: params["username"])
     end
 
     get '/login' do

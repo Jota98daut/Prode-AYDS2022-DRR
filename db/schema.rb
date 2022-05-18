@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_14_204902) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_18_125244) do
   create_table "bets", force: :cascade do |t|
     t.boolean "draw"
     t.integer "player_id"
@@ -56,11 +56,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_204902) do
     t.index ["winner_id"], name: "index_matches_on_winner_id"
   end
 
-  create_table "players", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "scores", force: :cascade do |t|
     t.integer "points"
     t.integer "player_id"
@@ -104,9 +99,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_204902) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest", default: "", null: false
+    t.string "type"
   end
 
   add_foreign_key "matches", "teams", column: "away_id"
