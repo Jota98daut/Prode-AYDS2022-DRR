@@ -28,21 +28,24 @@ class App < Sinatra::Application
   get '/' do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
-      "Username: #{@current_user.username}\nPassword digest: #{@current_user.password_digest}"
+      "Username: #{@current_user.username}\nPassword digest: #{@current_user.password}"
     else
       redirect '/login'
     end
   end
 
   get '/signup' do
-    '<h1>Sign Up</h1>
-     <p>Not yet implemented</p>'
+    erb :signup
+  end
+
+  get '/login' do
+    erb :login
   end
 
   post '/login' do
-    user = User.find_by( username: params['username'] )
+    user = User.find_by username: params['username']
     if user     # if there is an user with that username
-      user = user.authenticate( params['password'] )
+      user = user.authenticate params['password']
       if user   # and the password is correct
         session[:user_id] = user.id
         redirect '/'
@@ -54,8 +57,17 @@ class App < Sinatra::Application
     end
   end
 
-  get '/login' do
-    erb :login
+  post '/signup' do
+    player = Player.new( params )
+    if player.username.blank? 
+      or player.password.blank? 
+      or player.password != player.password_confirmation 
+      or User.find_by_username params['username']
+      redirect '/signup'
+    end
+    player.save
+    session[:user_id] = player.id
+    redirect '/'
   end
 
 end
