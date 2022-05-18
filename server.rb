@@ -38,6 +38,16 @@ class App < Sinatra::Application
     erb :signup
   end
 
+  post '/signup' do
+    player = Player.new( params )
+    if player.save
+      session[:user_id] = player.id
+      redirect '/'
+    else
+      redirect '/signup'
+    end
+  end
+
   get '/login' do
     erb :login
   end
@@ -57,14 +67,14 @@ class App < Sinatra::Application
     end
   end
 
-  post '/signup' do
-    player = Player.new( params )
-    if player.username.blank? or player.password.blank? or player.password != player.password_confirmation or User.find_by_username params['username']
-      redirect '/signup'
+  before do
+    if session[:user_id]
+      @current_user = User.find_by(id: session[:user_id])
+    else
+      public_pages = ["/", "/login", "/signup"]
+      if !public_pages.include?(request.path_info)
+        redirect '/login'
+      end
     end
-    player.save
-    session[:user_id] = player.id
-    redirect '/'
   end
-
 end
