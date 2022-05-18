@@ -16,8 +16,8 @@ class App < Sinatra::Application
     end
 
     configure do
-        # enable :sessions
-        set :sessions, true
+        enable :sessions
+        # set :sessions, true
         set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
         set :views, 'views'
     end
@@ -27,12 +27,27 @@ class App < Sinatra::Application
     end
 
     get '/' do
-      redirect '/login'
+      if session[:user_id]
+        @current_user = User.find_by(id: session[:user_id])
+        "Hello, #{@current_user.username}"
+      else
+        redirect '/login'
+      end
+    end
+
+    get '/signup' do
+      '<h1>Sign Up</h1>
+       <p>Not yet implemented</p>'
     end
 
     post '/login' do
-      User.all
-      user = User.find_by(username: params["username"])
+      user = User.find_by username: params['username']
+      if user
+        session[:user_id] = user.id
+        redirect '/'
+      else
+        redirect '/signup'
+      end
     end
 
     get '/login' do
