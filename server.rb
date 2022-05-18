@@ -59,10 +59,7 @@ class App < Sinatra::Application
 
   post '/signup' do
     player = Player.new( params )
-    if player.username.blank? 
-      or player.password.blank? 
-      or player.password != player.password_confirmation 
-      or User.find_by_username params['username']
+    if player.username.blank? or player.password.blank? or player.password != player.password_confirmation or User.find_by_username params['username']
       redirect '/signup'
     end
     player.save
