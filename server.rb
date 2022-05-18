@@ -67,6 +67,10 @@ class App < Sinatra::Application
     end
   end
 
+  get '/admin' do
+    erb :admin
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
