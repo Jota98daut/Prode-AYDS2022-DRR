@@ -13,7 +13,7 @@ En vísperas del mundial 2022, se requirió por parte del equipo docente, desarr
 
 En un principio, el PRODE surgió como un modo de apostar sobre campeonatos de fútbol argentino; sin embargo, es posible realizar pronósticos sobre muchas disciplinas competitivas.
 
-El sistema registra torneos, que son conjuntos de partidos de los cuales se decide un campeón, ya sea por acumulación de puntos o a través de la eliminación del resto de los contrincantes. De los torneos se registra un identificador único, su nombre, a qué deporte pertenece, sus partidos y los equipos participantes. Generalmente, los partidos pertenecientes a un torneo están organizando en fases, de las cuales se registra su nombre.
+El sistema registra torneos, que son conjuntos de partidos de los cuales se decide un campeón, ya sea por acumulación de puntos o a través de la eliminación del resto de los contrincantes. De los torneos se registra un identificador único, su nombre, a qué deporte pertenece, sus partidos y los equipos participantes. Generalmente, los partidos pertenecientes a un torneo está organizado en fases, de las cuales se registra su nombre.
 
 Este sistema sólo soporta partidos donde se enfrentan dos equipos. Los partidos se registran con fecha, hora, equipos participantes, si hubo empate, si permite penales, y equipo ganador (que puede no haber). No puede haber penales si no hubo empate.
 
