@@ -1,0 +1,12 @@
+<h1>Add tournament</h1>
+
+<form action='http://localhost:4567/add_tournaments' method='POST'>
+    <label for='Name'>Name: </label><input id='name' name='name' type='text' placeholder='name'></input>
+    <label for='Sport'>Sport:</label>
+    <select name='sport' id='Sports'>
+        <% @sports.each do |sport| %>
+            <%= "<option>#{sport.name}</option>" %>
+        <% end %>
+    </select>
+    <button type='submit'>Add</button>
+</form>
