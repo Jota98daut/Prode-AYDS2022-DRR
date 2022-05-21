@@ -91,6 +91,12 @@ class App < Sinatra::Application
     redirect '/manage_tournaments'  
   end
 
+  get '/modify_tournaments' do
+    t = Tournament.find_by(name: params['name'])
+    @stages = Stage.where(tournament: t)
+    erb :modify_tournaments
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
