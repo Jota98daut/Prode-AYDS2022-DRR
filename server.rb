@@ -1,4 +1,4 @@
-  require 'sinatra/base'
+require 'sinatra/base'
 require 'bundler/setup'
 require "sinatra/activerecord"
 
@@ -69,6 +69,21 @@ class App < Sinatra::Application
 
   get '/admin' do
     erb :admin
+  end
+
+  get '/manage_sports' do
+    @sports = Sport.all
+    erb :manage_sports
+  end
+
+  post '/add_sport' do
+    Sport.create( name: params['name'] )
+    redirect '/manage_sports'
+  end
+
+  post '/delete_sport' do
+    Sport.find_by(id: params['id']).destroy
+    redirect '/manage_sports'
   end
 
   get '/manage_tournaments' do
