@@ -85,6 +85,11 @@ class App < Sinatra::Application
     erb :'sports/manage_sports'
   end
 
+  post '/rename_sport' do
+    Sport.find_by(id: params['id']).update(name: params['new_name'])
+    redirect '/manage_sports'
+  end
+
   post '/add_sport' do
     Sport.create( name: params['name'] )
     redirect '/manage_sports'
@@ -110,20 +115,37 @@ class App < Sinatra::Application
     redirect '/manage_tournaments'
   end
 
-  post '/manage_tournaments' do
-    Tournament.find_by_name(params['name']).destroy
-    redirect '/manage_tournaments'  
+  post '/remove_tournaments' do
+    Tournament.find_by_name(params['id']).destroy
+    redirect '/manage_tournaments'
   end
 
   get '/modify_tournaments' do
-    t = Tournament.find_by(name: params['name'])
-    @stages = Stage.where(tournament: t)
+    @tournament = Tournament.find_by(id: params['id'])
+    @stages = Stage.where(tournament: @tournament)
     erb :'tournaments/modify_tournaments'
+  end
+
+  get '/add_stages' do
+    @tournament = Tournament.find_by(id: params['tournament_id'])
+    erb :'stages/add_stages'
+  end
+
+  post '/add_stages' do
+    Stage.create(params)
+    redirect '/modify_tournaments?id=' + params['tournament_id']
   end
 
   get '/modify_stages' do
     @stage = Stage.find_by(id: params['id'])
-    erb :modify_stage
+    erb :'stages/modify_stage'
+  end
+
+  post '/remove_stages' do
+    stage = Stage.find_by(id: params['id'])
+    tournament = stage.tournament
+    stage.destroy
+    redirect "/modify_tournaments?id=#{stage.tournament.id}"
   end
 
   post '/modify_stages' do 
@@ -135,7 +157,50 @@ class App < Sinatra::Application
       stage.update(name: params['name'], penalties: false)
     end
 
-    redirect "/modify_tournaments?name=#{stage.tournament.name}"
+    redirect "/modify_tournaments?id=#{stage.tournament.id}"
+  end
+
+  get '/add_matches' do
+    @teams = Team.all
+    tournament = Tournament.find_by(id: params['tournament_id'])
+    @stages = tournament.stages
+    erb :'matches/add_matches'
+  end
+
+  post '/add_matches' do
+    match = Match.new
+    match.stage = Stage.find_by(name: params['stage_name'])
+    match.date = params['date']
+    match.time = params['time']
+    match.home = Team.find_by(name: params['home_name'])
+    match.away = Team.find_by(name: params['away_name'])
+    match.save
+
+    redirect "modify_tournaments?id=#{params['tournament_id']}"
+  end
+
+  get '/modify_matches' do
+    @match = Match.find_by(id: params['id'])
+    @teams = Team.all
+    erb :'matches/modify_matches'
+  end
+
+  post '/modify_matches' do
+    match = Match.find_by(id: params['id'])
+    match.date = params['date']
+    match.time = params['time']
+    match.home = Team.find_by(name: params['home_name'])
+    match.away = Team.find_by(name: params['away_name'])
+    match.save
+
+    redirect "modify_tournaments?id=" + match.stage.tournament_id.to_s
+  end
+
+  post '/remove_matches' do
+    match = Match.find_by(id: params['id'])
+    tournament = match.stage.tournament
+    match.destroy
+    redirect "/modify_tournaments?id=#{match.stage.tournament_id}"
   end
 
   before do
