@@ -28,14 +28,22 @@ class App < Sinatra::Application
   get '/' do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
-      "Username: #{@current_user.username}\nPassword digest: #{@current_user.password}"
+      if @current_user.type == 'Admin'
+        redirect '/admin'
+      else
+        redirect '/lobby'
+      end
     else
       redirect '/login'
     end
   end
 
+  get '/lobby' do
+    erb :'users/lobby'
+  end
+
   get '/signup' do
-    erb :'users/signup'
+   erb :'users/signup'
   end
 
   post '/signup' do
