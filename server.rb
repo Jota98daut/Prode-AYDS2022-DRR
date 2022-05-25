@@ -19,6 +19,7 @@ class App < Sinatra::Application
     enable :sessions
     set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
     set :views, 'views'
+    set :public_folder, 'public'
   end
 
   def initialize(app = nil)

@@ -1,20 +1,26 @@
-<h1>Manage sports</h1>
+<head>
+  <title>Manage sports</title>
+</head>
 
-<p>Sports</p>
+<body>
+  <h1>Manage sports</h1>
 
-<ul>
-  <% @sports.each do |sport| %>
-    <%= "<li>#{sport.name}
-             <form action=\"http://localhost:4567/rename_sport?id=#{sport.id}\" method='PATCH'>
-               <button type='submit'>Rename</button>
-             </form>
-             <form action=\"http://localhost:4567/delete_sport?id=#{sport.id}\" method='POST'>
-               <button type='submit'>Remove</button>
-             </form>
-         </li>" %>
-     <% end %>
-</ul>
-<form action="http://localhost:4567/add_sport" method='POST'>
-  <input type='text' name='name' placeholder='name'></input>
-  <button type='submit'>Add</button>
-</form>
+  <p>Sports</p>
+
+  <ul>
+    <% @sports.each do |sport| %>
+      <%= "<li>#{sport.name}
+                <button class='rename_button' name='#{sport.id}' type='submit' >Rename</button>
+               <form action=\"http://localhost:4567/delete_sport?id=#{sport.id}\" method='POST'>
+                 <button type='submit'>Remove</button>
+               </form>
+           </li>" %>
+       <% end %>
+  </ul>
+  <form action="http://localhost:4567/add_sport" method='POST'>
+    <input type='text' name='name' placeholder='name'></input>
+    <button type='submit'>Add</button>
+  </form>
+
+  <script src='/scripts/rename_sports.js'></script>
+</body>
