@@ -19,6 +19,7 @@ class App < Sinatra::Application
     enable :sessions
     set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
     set :views, 'views'
+    set :public_folder, 'public'
   end
 
   def initialize(app = nil)
@@ -28,14 +29,22 @@ class App < Sinatra::Application
   get '/' do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
-      "Username: #{@current_user.username}\nPassword digest: #{@current_user.password}"
+      if @current_user.type == 'Admin'
+        redirect '/admin'
+      else
+        redirect '/lobby'
+      end
     else
       redirect '/login'
     end
   end
 
+  get '/lobby' do
+    erb :'users/lobby'
+  end
+
   get '/signup' do
-    erb :signup
+   erb :'users/signup'
   end
 
   post '/signup' do
@@ -49,7 +58,7 @@ class App < Sinatra::Application
   end
 
   get '/login' do
-    erb :login
+    erb :'users/login'
   end
 
   post '/login' do
@@ -68,12 +77,12 @@ class App < Sinatra::Application
   end
 
   get '/admin' do
-    erb :admin
+    erb :'users/admin'
   end
 
   get '/manage_sports' do
     @sports = Sport.all
-    erb :manage_sports
+    erb :'sports/manage_sports'
   end
 
   post '/add_sport' do
@@ -88,12 +97,12 @@ class App < Sinatra::Application
 
   get '/manage_tournaments' do
     @tournaments = Tournament.all
-    erb :manage_tournaments
+    erb :'tournaments/manage_tournaments'
   end
 
   get '/add_tournaments' do
     @sports = Sport.all
-    erb :add_tournaments
+    erb :'tournaments/add_tournaments'
   end
 
   post '/add_tournaments' do
@@ -109,7 +118,7 @@ class App < Sinatra::Application
   get '/modify_tournaments' do
     t = Tournament.find_by(name: params['name'])
     @stages = Stage.where(tournament: t)
-    erb :modify_tournaments
+    erb :'tournaments/modify_tournaments'
   end
 
   get '/modify_stages' do
