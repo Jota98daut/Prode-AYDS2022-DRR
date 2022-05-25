@@ -3,8 +3,8 @@
 <ul>
     <% @stages.each do |stage| %>
         <%= "<li>#{stage.name} 
-                 <a href=\"http://localhost:4567/modify_stages?name=#{stage.name}\"><button>Modify</button></a>
-                 <form action=\"http://localhost:4567/modify_tournaments?name=#{stage.name}\" method='POST'><button type='submit'>Remove</button></form>
+                 <a href=\"http://localhost:4567/modify_stages?id=#{stage.id}\"><button>Modify</button></a>
+                 <form action=\"http://localhost:4567/modify_tournaments?id=#{stage.id}\" method='POST'><button type='submit'>Remove</button></form>
              </li>" %>
     <% end %>
 </ul>

@@ -112,6 +112,23 @@ class App < Sinatra::Application
     erb :modify_tournaments
   end
 
+  get '/modify_stages' do
+    @stage = Stage.find_by(id: params['id'])
+    erb :modify_stage
+  end
+
+  post '/modify_stages' do 
+    stage = Stage.find_by(id: params['id'])
+
+    if params['penalties'] == "Yes"
+      stage.update(name: params['name'], penalties: true)
+    else
+      stage.update(name: params['name'], penalties: false)
+    end
+
+    redirect "/modify_tournaments?name=#{stage.tournament.name}"
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
