@@ -1,0 +1,29 @@
+<h1>Add Match</h1>
+
+<form action="http://localhost:4567/add_matches?tournament_id=<%= params['tournament_id'] %>" method='POST'>
+    <label for='stage'>Stage:</label>
+    <select id='stage' name='stage_name'>
+        <% @stages.each do |stage| %>
+            <%= "<option>#{stage.name}</option>" %>
+        <% end %>
+    </select>
+    
+    <label for='date'>Date: </label> <input id='date' name='date' type='date' required>
+    <label for='time'>Time: </label> <input id='time' name='time' type='time' required>
+    
+    <label for='home'>Home:</label>
+    <select id='home' name='home_name'>
+        <% @teams.each do |team| %>
+            <%= "<option>#{team.name}</option>" %>
+        <% end %>
+    </select>
+
+    <label for='away'>Away:</label>
+    <select id='away' name='away_name'>
+        <% @teams.each do |team| %>
+            <%= "<option>#{team.name}</option>" %>
+        <% end %>
+    </select>
+    
+    <button>Add</button></a>    
+</form>

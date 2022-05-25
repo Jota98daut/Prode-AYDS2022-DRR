@@ -1,0 +1,22 @@
+<h1>Modify Match</h1>
+
+<form action="http://localhost:4567/modify_matches?id=<%= @match.id %>" method='POST'>
+    <label for='date'>Date: </label> <input id='date' name='date' type='date' value=<%= @match.date %>>
+    <label for='time'>Time: </label> <input id='time' name='time' type='time' value='<%= @match.time.strftime("%H:%M") %>'>
+    
+    <label for='home'>Home:</label>
+    <select id='home' name='home_name'>
+        <% @teams.each do |team| %>
+            <%= "<option #{if team.name == @match.home.name then 'selected' end}>#{team.name}</option>" %>
+        <% end %>
+    </select>
+
+    <label for='away'>Away:</label>
+    <select id='away' name='away_name'>
+        <% @teams.each do |team| %>
+            <%= "<option #{if team.name == @match.away.name then 'selected' end}>#{team.name}</option>" %>
+        <% end %>
+    </select>
+    
+    <button>Apply</button>   
+</form>
