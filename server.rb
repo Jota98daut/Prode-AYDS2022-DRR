@@ -136,7 +136,7 @@ class App < Sinatra::Application
     redirect '/tournaments?id=' + params[:tournament_id]
   end
 
-  patch '/stages/:id' do
+  get '/stages/:id' do
     @stage = Stage.find_by(id: params[:id])
     erb :'stages/modify_stage'
   end
@@ -145,10 +145,10 @@ class App < Sinatra::Application
     stage = Stage.find_by(id: params[:id])
     tournament = stage.tournament
     stage.destroy
-    redirect "/tournaments?id=#{stage.tournament.id}"
+    redirect "/tournaments/#{stage.tournament_id}"
   end
 
-  get '/stages/:id' do 
+  patch '/stages/:id' do 
     stage = Stage.find_by(id: params[:id])
 
     if params[:penalties] == "Yes"
@@ -157,7 +157,7 @@ class App < Sinatra::Application
       stage.update(name: params[:name], penalties: false)
     end
 
-    redirect "/tournaments/" + stage.tournament_id
+    redirect "/tournaments/#{stage.tournament_id}"
   end
 
   get '/matches/new' do

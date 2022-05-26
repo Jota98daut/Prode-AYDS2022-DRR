@@ -1,11 +1,12 @@
 <h1>Modify stage</h1>
 
-<form action="http://localhost:4567/modify_stages?id=<%= @stage.id %>" method='POST'>
-    <label for='name'>Name: </label> <input value=<%= @stage.name %> id='name' name='name' type='text' placeholder='name'></input>
-    <label for='penalties'>Penalties?:</label>
-    <select name='penalties' id='penalties'>
-        <option <%= if @stage.penalties then 'selected' end %>>Yes</option>
-        <option <%= if !@stage.penalties then 'selected' end %>>No</option>
-    </select>
-    <button>Apply</button></a>
+<form action="http://localhost:4567/stages/<%= @stage.id %>" method='POST'>
+  <input type='hidden' name='_method' value='PATCH'>
+  <label for='name'>Name: </label> <input value=<%= @stage.name %> id='name' name='name' type='text' placeholder='name'></input>
+  <label for='penalties'>Penalties?:</label>
+  <select name='penalties' id='penalties'>
+    <option <%= if @stage.penalties then 'selected' end %>>Yes</option>
+    <option <%= if !@stage.penalties then 'selected' end %>>No</option>
+  </select>
+  <button>Apply</button>
 </form>
