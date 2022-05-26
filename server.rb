@@ -116,7 +116,7 @@ class App < Sinatra::Application
   end
 
   post '/remove_tournaments' do
-    Tournament.find_by_name(params['id']).destroy
+    Tournament.find_by_id(params['id']).destroy
     redirect '/manage_tournaments'
   end
 
