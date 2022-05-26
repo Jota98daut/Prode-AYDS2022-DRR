@@ -203,6 +203,46 @@ class App < Sinatra::Application
     redirect "/modify_tournaments?id=#{match.stage.tournament_id}"
   end
 
+  get '/manage_teams' do
+    @teams = Team.all
+    erb :'teams/manage_teams'
+  end
+
+  get '/add_teams' do
+    @countries = Country.all
+    erb :'teams/add_teams'
+  end
+
+  post '/add_teams' do 
+    team = Team.new
+    team.name = params['name']
+    team.country = Country.find_by(name: params['country'])
+    team.save
+
+    redirect "/manage_teams"
+  end
+
+  post '/remove_teams' do
+    Team.find_by(id: params['id']).destroy
+
+    redirect 'manage_teams'
+  end
+
+  get '/modify_teams' do 
+    @countries = Country.all
+    @team = Team.find_by(id: params['id'])
+    erb :'teams/modify_teams'
+  end
+
+  post '/modify_teams' do
+    team = Team.find_by(id: params['id'])
+    team.name = params['name']
+    team.country = Country.find_by(name: params['country'])
+    team.save
+
+    redirect "/manage_teams"
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
