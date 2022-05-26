@@ -1,0 +1,12 @@
+<h1>Add Teams</h1>
+
+<form action="http://localhost:4567/modify_teams?id=<%= @team.id %>" method='POST'>
+    <label for='name'>Name:</label> <input id='name' name='name' type='text' placeholder='name' value='<%= @team.name%>' required>
+    <label for='country'>Country:</label>
+    <select id='country' name='country'>
+        <% @countries.each do |country| %>
+            <%= "<option #{if country.name == @team.country.name then 'selected' end}>#{country.name}</option>" %>
+        <% end %>
+    </select>
+    <button type='submit'>Apply</button>
+</form>

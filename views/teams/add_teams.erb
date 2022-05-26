@@ -1,0 +1,12 @@
+<h1>Add Teams</h1>
+
+<form action='http://localhost:4567/add_teams' method='POST'>
+    <label for='name'>Name:</label> <input id='name' name='name' type='text' placeholder='name' required>
+    <label for='country'>Country:</label>
+    <select id='country' name='country'>
+        <% @countries.each do |country| %>
+            <%= "<option>#{country.name}</option>" %>
+        <% end %>
+    </select>
+    <button type='submit'>Add</button>
+</form>

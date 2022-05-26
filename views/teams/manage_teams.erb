@@ -1,0 +1,12 @@
+<h1>Manage Teams</h1>
+
+<ul>
+    <% @teams.each do |team| %>
+        <%= "<li>#{team.name}  -  #{team.country.name}
+            <a href=\"http://localhost:4567/modify_teams?id=#{team.id}\"><button>Modify</button></a>
+            <form style='display:inline' action=\"http://localhost:4567/remove_teams?id=#{team.id}\" method='POST'><button type='submit'>Remove</button></form>
+        </li>" %>
+    <% end %>
+</ul>
+
+<a href='http://localhost:4567/add_teams'><button>Add</button></a>
