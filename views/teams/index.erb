@@ -4,9 +4,10 @@
   <% @teams.each do |team| %>
     <%= "<li>#{team.name}  -  #{team.country.name}
       <a href=\"http://localhost:4567/teams/#{team.id}\"><button>Modify</button></a>
-      <form style='display:inline' action=\"http://localhost:4567/teams/#{team.id}\" method='POST'>
+      <button form=#{team.id} type='submit'>Delete</button>
+
+      <form id=#{team.id} action=\"http://localhost:4567/teams/#{team.id}\" method='POST'>
         <input type='hidden' name='_method' value='DELETE'>
-        <button type='submit'>Delete</button>
       </form>
     </li>" %>
   <% end %>

@@ -4,9 +4,10 @@
   <% @tournaments.each do |tournament| %>
     <%= "<li>#{tournament.name} 
       <a href=\"http://localhost:4567/tournaments/#{tournament.id}\"><button>Modify</button></a>
-      <form action=\"http://localhost:4567/tournaments/#{tournament.id}\" method='POST'>
+      <button form='#{tournament.id}' type='submit'>Remove</button>
+
+      <form id='#{tournament.id}' action=\"http://localhost:4567/tournaments/#{tournament.id}\" method='POST'>
         <input type='hidden' name='_method' value='DELETE'>
-        <button type='submit'>Remove</button>
       </form>
     </li>" %>
     <% end %>

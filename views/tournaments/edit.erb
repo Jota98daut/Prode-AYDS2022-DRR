@@ -4,10 +4,11 @@
   <% @stages.each do |stage| %>
     <%= "<li>#{stage.name} 
       <a href=\"http://localhost:4567/stages/#{stage.id}\"><button>View</button></a>
-        <form action=\"http://localhost:4567/stages/#{stage.id}\" method='POST'>
-          <input type='hidden' name='_method' value='DELETE'>
-          <button type='submit'>Remove</button>
-        </form>
+      <button form=#{stage.id} type='submit'>Remove</button>
+
+      <form id=#{stage.id} action=\"http://localhost:4567/stages/#{stage.id}\" method='POST'>
+        <input type='hidden' name='_method' value='DELETE'>
+      </form>
     </li>" %>
   <% end %>
 </ul>
@@ -22,10 +23,11 @@
     <% stage.matches.each do |match| %>
       <%= "<li>#{match.home.name} - #{match.away.name} - #{match.date.to_s} - #{match.time.strftime("%H:%M")} - #{match.stage.name}
         <a href=\"http://localhost:4567/matches/#{match.id}\"><button>Modify</button></a>
-          <form action=\"http://localhost:4567/matches/#{match.id}\" method='POST'>
-            <input type='hidden' name='_method' value='DELETE'>
-            <button type='submit'>Remove</button>
-          </form>
+        <button form=#{match.id} type='submit'>Remove</button>
+
+        <form id=#{match.id} action=\"http://localhost:4567/matches/#{match.id}\" method='POST'>
+          <input type='hidden' name='_method' value='DELETE'>
+        </form>
       </li>" %>
     <% end %>
   <% end %>
