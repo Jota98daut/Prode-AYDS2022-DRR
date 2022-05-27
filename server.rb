@@ -133,7 +133,7 @@ class App < Sinatra::Application
 
   post '/stages' do
     Stage.create(params)
-    redirect '/tournaments?id=' + params[:tournament_id]
+    redirect '/tournaments/' + params[:tournament_id]
   end
 
   get '/stages/:id' do
@@ -193,10 +193,10 @@ class App < Sinatra::Application
     match.away = Team.find_by(name: params[:away_name])
     match.save
 
-    redirect "/tournaments/" + match.stage.tournament_id
+    redirect "/tournaments/#{match.stage.tournament_id}"
   end
 
-  delete '/matches' do
+  delete '/matches/:id' do
     match = Match.find_by(id: params[:id])
     tournament = match.stage.tournament
     match.destroy
