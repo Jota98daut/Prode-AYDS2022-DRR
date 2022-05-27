@@ -82,7 +82,7 @@ class App < Sinatra::Application
 
   get '/sports' do
     @sports = Sport.all
-    erb :'sports/manage_sports'
+    erb :'sports/index'
   end
 
   patch '/sports/:id' do
@@ -102,12 +102,12 @@ class App < Sinatra::Application
 
   get '/tournaments' do
     @tournaments = Tournament.all
-    erb :'tournaments/manage_tournaments'
+    erb :'tournaments/index'
   end
 
   get '/tournaments/new' do
     @sports = Sport.all
-    erb :'tournaments/add_tournaments'
+    erb :'tournaments/new'
   end
 
   post '/tournaments' do
@@ -123,12 +123,12 @@ class App < Sinatra::Application
   get '/tournaments/:id' do
     @tournament = Tournament.find_by(id: params[:id])
     @stages = Stage.where(tournament: @tournament)
-    erb :'tournaments/modify_tournaments'
+    erb :'tournaments/edit'
   end
 
   get '/stages/new' do
     @tournament = Tournament.find_by(id: params[:tournament_id])
-    erb :'stages/add_stages'
+    erb :'stages/new'
   end
 
   post '/stages' do
@@ -138,7 +138,7 @@ class App < Sinatra::Application
 
   get '/stages/:id' do
     @stage = Stage.find_by(id: params[:id])
-    erb :'stages/modify_stage'
+    erb :'stages/edit'
   end
 
   delete '/stages/:id' do
@@ -164,7 +164,7 @@ class App < Sinatra::Application
     @teams = Team.all
     tournament = Tournament.find_by(id: params[:tournament_id])
     @stages = tournament.stages
-    erb :'matches/add_matches'
+    erb :'matches/new'
   end
 
   post '/matches' do
@@ -182,7 +182,7 @@ class App < Sinatra::Application
   get '/matches/:id' do
     @match = Match.find_by(id: params[:id])
     @teams = Team.all
-    erb :'matches/modify_matches'
+    erb :'matches/edit'
   end
 
   patch '/matches/:id' do
@@ -205,12 +205,12 @@ class App < Sinatra::Application
 
   get '/teams' do
     @teams = Team.all
-    erb :'teams/manage_teams'
+    erb :'teams/index'
   end
 
   get '/teams/new' do
     @countries = Country.all
-    erb :'teams/add_teams'
+    erb :'teams/new'
   end
 
   post '/teams' do 
@@ -231,7 +231,7 @@ class App < Sinatra::Application
   get '/teams/:id' do 
     @countries = Country.all
     @team = Team.find_by(id: params[:id])
-    erb :'teams/modify_teams'
+    erb :'teams/edit'
   end
 
   patch '/teams/:id' do
