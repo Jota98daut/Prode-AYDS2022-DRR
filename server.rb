@@ -40,7 +40,14 @@ class App < Sinatra::Application
   end
 
   get '/lobby' do
+    @tournaments = Tournament.all
     erb :'users/lobby'
+  end
+
+  get '/bets' do
+    @tournament = Tournament.find_by id: params[:tournament_id]
+    @score = @tournament.scores.where(player == @current_user)
+    erb :'bets/index'
   end
 
   get '/signup' do

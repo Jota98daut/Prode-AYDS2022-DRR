@@ -1,0 +1,33 @@
+<h1>Bets for <%= @tournament.name %></h1>
+
+<div> <p>Points: <%= @score.points %></p> </div>
+
+<h2>Forecasts</h2>
+<% @tournament.stages.each do |stage| %>
+    <%= "#{stage.name}
+        <table>
+        <tr>
+            <th>Home</th>
+            <th>Away</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Winner</th>
+            <th>By penalties</th>
+        </tr>
+    " %>
+
+    <% stage.matches.each do |match| %>
+        <%= "
+            <tr>
+                <td>#{match.home.name}</td>
+                <td>#{match.away.name}</td>
+                <td>#{match.date}</td>
+                <td>#{match.time}</td>
+                <td>#{if match.draw then yes else no end}</td>
+            </tr>
+        " %>
+    <% end %>
+<% end %>
+</table>
+
+<a href='/http://localhost:4567/new?tournament_id=#{tournament.id}'> <button> Add Forcast </button></a>
