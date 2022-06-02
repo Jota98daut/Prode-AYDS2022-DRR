@@ -18,20 +18,21 @@
             <tr>
                 <th>Home</th>
                 <th>Away</th>
+                #{"<th>Draw</th>" if not stage.penalties}
                 <th>Date</th>
                 <th>Time</th>
-                <th>Penalties?</th>
+                #{"<th>Penalties?</th>" if stage.penalties}
             </tr>
         " %>
         <% stage.matches.each do |match| %>
             <%= "
                 <tr>
-                    <td><label for='home'#{match.home.name}<input type='radio' from=#{match.id} name='home'></td>
-                    <td>#{match.away.name}</td>
-                    #{"<td><input type='radio' form=#{match.id}></td>" if not match.stage.penalties}
+                    <td><label for='home_#{match.id}'>#{match.home.name}</label><input type='radio' form=#{match.id} name='winner_#{match.id}' value='home'></td>
+                    <td><label for='away_#{match.id}'>#{match.away.name}</label><input type='radio' form=#{match.id} name='winner_#{match.id}' value='away'></td>
+                    #{"<td><input type='radio' form=#{match.id} name='winner_#{match.id}' value='draw'></td>" if not match.stage.penalties}
                     <td>#{match.date}</td>
                     <td>#{match.time}</td>
-                    #{'<td>chau</td>' if match.stage.penalties}
+                    #{"<td><input form=#{match.id} type='checkbox' name='penalties' value='penalties'></td>" if match.stage.penalties}
                 </tr>
                 </table>
                 <form id=#{match.id}></form>
