@@ -1,0 +1,41 @@
+<head>
+    <style>
+    table, th, td {
+    border:1px solid black;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Forcast match result</h1>
+
+    <h2>Matches</h2>
+
+    <% @tournament.stages.each do |stage| %>
+        <%= "
+            <h3>#{stage.name}</h3>
+            <table>
+            <tr>
+                <th>Home</th>
+                <th>Away</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Penalties?</th>
+            </tr>
+        " %>
+        <% stage.matches.each do |match| %>
+            <%= "
+                <tr>
+                    <td><label for='home'#{match.home.name}<input type='radio' from=#{match.id} name='home'></td>
+                    <td>#{match.away.name}</td>
+                    #{"<td><input type='radio' form=#{match.id}></td>" if not match.stage.penalties}
+                    <td>#{match.date}</td>
+                    <td>#{match.time}</td>
+                    #{'<td>chau</td>' if match.stage.penalties}
+                </tr>
+                </table>
+                <form id=#{match.id}></form>
+            " %>
+        <% end %>
+    <% end %>
+</body>
