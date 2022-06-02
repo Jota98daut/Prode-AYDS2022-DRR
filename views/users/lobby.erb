@@ -3,9 +3,9 @@
 <p>Welcome, <%= @current_user.username %></p>
 
 <ul>
-    <% @tournaments.each |tournament| do%>
+    <% @tournaments.each do |tournament|%>
         <%= "<li> 
-            <a href=\"http://localhost:4567/bets?#{tournament.id}\"> <button> #{tournament.name} </button></a>
+            <a href=\"http://localhost:4567/bets?tournament_id=#{tournament.id}\"> <button> #{tournament.name} </button></a>
         </li>" %>
     <% end %>
 </ul>
