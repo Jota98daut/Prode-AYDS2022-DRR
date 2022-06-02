@@ -27,7 +27,8 @@
             </tr>
         " %>
         <% stage.matches.each do |match| %>
-            <%= "
+          <%= if not (@current_user.bets.find_by match: match or match.result_charged?) then
+                "
                 <tr>
                     <td><label for='home_#{match.id}'>#{match.home.name}</label><input id='home_#{match.id}' type='radio' form=#{match.id} name='winner' value=#{match.home.id}></td>
                     <td><label for='away_#{match.id}'>#{match.away.name}</label><input id='away_#{match.id}' type='radio' form=#{match.id} name='winner' value=#{match.away.id}></td>
@@ -39,7 +40,8 @@
                 </tr>
                 
                 <form id=#{match.id} action=\"http://localhost:4567/bets?match_id=#{match.id}\" method='POST'></form>
-            " %>
+                " 
+              end %>
         <% end %>
         <%= "</table>" %>
     <% end %>
