@@ -46,8 +46,27 @@ class App < Sinatra::Application
 
   get '/bets' do
     @tournament = Tournament.find_by id: params[:tournament_id]
-    @score = @tournament.scores.where(player == @current_user)
+    @score = @tournament.scores.find_by(player: @current_user)
+    @bets = Bet.where(player: @current_user)
+    @bets = @bets.filter {|bet| bet.match.stage.tournament == @tournament}
     erb :'bets/index'
+  end
+
+  get '/bets/new' do
+    @tournament = Tournament.find_by id: params[:tournament_id]
+    erb :'bets/new'
+  end
+
+  post '/bets' do
+    
+  end
+
+  patch '/bets/:id' do
+    # Modify a bet
+  end
+
+  delete '/bets/:id' do
+    # Delete a bet
   end
 
   get '/signup' do
@@ -57,6 +76,9 @@ class App < Sinatra::Application
   post '/signup' do
     player = Player.new( params )
     if player.save
+      Tournament.all.each do |tournament|
+        Score.create player: player, points: 0, tournament: tournament
+      end
       session[:user_id] = player.id
       redirect '/'
     else
@@ -77,7 +99,7 @@ class App < Sinatra::Application
         redirect '/'
       else
         redirect '/login'
-      end
+      end 
     else
       redirect 'login'
     end
@@ -118,7 +140,10 @@ class App < Sinatra::Application
   end
 
   post '/tournaments' do
-    Tournament.create(name: params[:name], sport: Sport.find_by(name: params[:sport]))
+    t = Tournament.create(name: params[:name], sport: Sport.find_by(name: params[:sport]))
+    Player.all.each do |player|
+      Score.create(points: 0, player: player, tournament: t)
+    end
     redirect '/tournaments'
   end
 
