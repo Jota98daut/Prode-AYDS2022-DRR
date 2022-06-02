@@ -32,8 +32,8 @@
                     <td><label for='home_#{match.id}'>#{match.home.name}</label><input id='home_#{match.id}' type='radio' form=#{match.id} name='winner' value=#{match.home.id}></td>
                     <td><label for='away_#{match.id}'>#{match.away.name}</label><input id='away_#{match.id}' type='radio' form=#{match.id} name='winner' value=#{match.away.id}></td>
                     #{"<td><input type='radio' form=#{match.id} name='winner' value='draw'></td>" if not match.stage.penalties}
-                    <td>#{match.date}</td>
-                    <td>#{match.time}</td>
+                    <td>#{match.date.strftime('%d-%m-%Y')}</td>
+                    <td>#{match.time.strftime('%H:%M')}</td>
                     #{"<td><input form=#{match.id} type='checkbox' name='penalties' value=1></td>" if match.stage.penalties}
                     <td><button form=#{match.id} type='submit'>Predict</td>
                 </tr>
