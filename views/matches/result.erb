@@ -1,0 +1,17 @@
+<h1>Set match result</h1>
+
+<p>Match details:</p>
+<p><%= @match.stage.tournament.name + " | " + @match.stage.name + " | " + @match.home.name + " - " + @match.away.name + " | " + @match.date.to_s + " | " + @match.time.to_s %>
+
+<form action='http://localhost:4567/matches/result/<%= @match.id %>' method='POST'>
+  <input type='hidden' name='_method' value='PATCH'>
+  <label for='winner'>Winner</label>
+  <select id='winner' name='winner'>
+    <option value=<%= @match.home_id %>><%= @match.home.name %></option>
+    <option value=<%= @match.away_id %>><%= @match.away.name %></option>
+    <option value='draw'>Draw</option>
+  </select>
+  <label for='penalties'>Were there penalties?</label>
+  <input type='checkbox' id='penalties' name='penalties' value='1'>
+  <button type='submit'>Update</button>
+</form>
