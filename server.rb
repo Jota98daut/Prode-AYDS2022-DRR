@@ -58,7 +58,7 @@ class App < Sinatra::Application
   end
 
   post '/bets' do
-    match = Match.find_by params[:match_id]
+    match = Match.find_by id: params[:match_id]
     bet = Bet.new match: match, player: @current_user
     bet.draw = false
     if params[:winner] == 'draw' then
@@ -253,8 +253,20 @@ class App < Sinatra::Application
     erb :'/matches/result'
   end
 
-  post '/matches/result' do
+  patch '/matches/result/:id' do
+    match = Match.find_by id: params[:id]
+    if params[:winner] == 'draw'
+      match.draw = true
+    else
+      match.winner_id = params[:winner]
+    end
 
+    if params[:penalties]
+      match.draw = true
+    end
+
+    match.save
+    redirect "/tournaments/#{match.stage.tournament_id}"
   end
 
   get '/teams' do
