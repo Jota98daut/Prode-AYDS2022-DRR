@@ -99,6 +99,11 @@ class App < Sinatra::Application
     end
   end
 
+  get '/logout' do
+    session[:user_id] = nil
+    redirect '/login'
+  end
+
   get '/login' do
     erb :'users/login'
   end
