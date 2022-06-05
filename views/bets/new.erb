@@ -39,7 +39,7 @@
                     <td><button form=#{match.id} type='submit'>Predict</td>
                 </tr>
                 
-                <form id=#{match.id} action=\"http://localhost:4567/bets?match_id=#{match.id}\" method='POST'></form>
+                <form id=#{match.id} action=\"/bets?match_id=#{match.id}\" method='POST'></form>
                 " 
               end %>
         <% end %>
