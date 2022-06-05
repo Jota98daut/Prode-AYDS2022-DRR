@@ -13,13 +13,13 @@
         <button class='rename_button' name='#{sport.id}' type='submit' >Rename</button>
         <button form=#{sport.id} type='submit'>Remove</button>
 
-        <form id=#{sport.id} action=\"http://localhost:4567/sports/#{sport.id}\" method='POST'>
+        <form id=#{sport.id} action=\"/sports/#{sport.id}\" method='POST'>
           <input type='hidden' name='_method' value='DELETE'>
         </form>
       </li>" %>
     <% end %>
   </ul>
-  <form action="http://localhost:4567/sports" method='POST'>
+  <form action="/sports" method='POST'>
     <input type='text' name='name' placeholder='name'></input>
     <button type='submit'>Add</button>
   </form>
