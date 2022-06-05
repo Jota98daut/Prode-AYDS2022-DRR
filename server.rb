@@ -54,6 +54,11 @@ class App < Sinatra::Application
 
   get '/bets/new' do
     @tournament = Tournament.find_by id: params[:tournament_id]
+    @bets = Bet.where(player: @current_user)
+    @matches = []
+    @bets.each do |b|
+      @matches.push(b.match)
+    end
     erb :'bets/new'
   end
 
@@ -93,7 +98,7 @@ class App < Sinatra::Application
         Score.create player: player, points: 0, tournament: tournament
       end
       session[:user_id] = player.id
-      redirect '/'
+      redirect '/'  # O será mejor redirigir al login??
     else
       redirect '/signup'
     end
