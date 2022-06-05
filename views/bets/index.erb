@@ -1,43 +1,73 @@
+<!DOCTYPE html>
+<html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lobby</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
-    table, th, td {
-    border:1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    }
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            background-color: mediumspringgreen;
+        }
     </style>
+    <Style type = "text / css">
+        tablescroll {
+            height: 150px;
+            width: 75%;
+            overflow:auto;
+        }
+    </Style> 
 </head>
 
-<h1>Bets for <%= @tournament.name %></h1>
+<body class="bg-dark text-light">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand mx-2" href="/">
+            <img src="/images/loginho.png" width="35" class="d-inline-block align-top" alt="">
+            <h4 class="d-inline-flex">Prode</h4>
+        </a>
+        
+        <form action='/logout' method='GET'>
+            <%= @current_user.username %>
+            <button class="mx-2 btn btn-outline-light btm-sm" type="submit">Log out</button>
+        </form>
+    </nav>
 
-<div> <p>Points: <%= @score.points %></p> </div>
+    <div class="container w-75 my-5"> 
+        <div class="row my-3"><h3> <%= @tournament.name %> - Forecasts </h3></div>
+        <div id="tablescroll"> 
+        <table class="table responsive table-dark table-striped">
+            <tr>
+                <th>Stage</th>
+                <th>Home</th>
+                <th>Away</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Winner</th>
+                <th>By penalties</th>
+            </tr>
+            <% @bets.each do |bet| %>
+            <%= "
+                <tr>
+                    <td>#{bet.match.stage.name}</td>
+                    <td>#{bet.match.home.name}</td>
+                    <td>#{bet.match.away.name}</td>
+                    <td>#{bet.match.date}</td>
+                    <td>#{bet.match.time.strftime("%H:%M")}</td>
+                    <td>#{if bet.team then bet.team.name else '-' end}</td>
+                    <td>#{if bet.draw then 'yes' else 'no' end}</td>
+                </tr>
+                " %>
+            <% end %>
+        </table>
+        </div>
+        <a href="/bets/new?tournament_id=<%= "#{@tournament.id}" %>"> <button class="btn btn-outline-primary"> Add Forcast </button></a>
+    </div>
 
-<h2>Forecasts</h2>
+</body>
 
-<table class="sortable">
-<tr>
-    <th>Stage</hd>
-    <th>Home</th>
-    <th>Away</th>
-    <th>Date</th>
-    <th>Time</th>
-    <th>Winner</th>
-    <th>By penalties</th>
-</tr>
-
-<% @bets.each do |bet| %>
-    <%= "
-        <tr>
-            <td>#{bet.match.stage.name}</td>
-            <td>#{bet.match.home.name}</td>
-            <td>#{bet.match.away.name}</td>
-            <td>#{bet.match.date}</td>
-            <td>#{bet.match.time}</td>
-            <td>#{if bet.team then bet.team.name else '-' end}</td>
-            <td>#{if bet.draw then 'yes' else 'no' end}</td>
-        </tr>
-    " %>
-<% end %>
-</table>
-
-<a href="/bets/new?tournament_id=<%= "#{@tournament.id}" %>"> <button> Add Forcast </button></a>
+</html>
