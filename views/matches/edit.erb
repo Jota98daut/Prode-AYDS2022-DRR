@@ -1,6 +1,6 @@
 <h1>Modify Match</h1>
 
-<form action="http://localhost:4567/matches/<%= @match.id %>" method='POST'>
+<form action="/matches/<%= @match.id %>" method='POST'>
   <input type='hidden' name='_method' value='PATCH'>
   <label for='date'>Date: </label> <input id='date' name='date' type='date' value=<%= @match.date %>>
   <label for='time'>Time: </label> <input id='time' name='time' type='time' value='<%= @match.time.strftime("%H:%M") %>'>

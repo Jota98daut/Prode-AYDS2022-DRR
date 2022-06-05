@@ -3,7 +3,7 @@
 <p>Match details:</p>
 <p><%= @match.stage.tournament.name + " | " + @match.stage.name + " | " + @match.home.name + " - " + @match.away.name + " | " + @match.date.to_s + " | " + @match.time.to_s %>
 
-<form action='http://localhost:4567/matches/result/<%= @match.id %>' method='POST'>
+<form action='/matches/result/<%= @match.id %>' method='POST'>
   <input type='hidden' name='_method' value='PATCH'>
   <label for='winner'>Winner</label>
   <select id='winner' name='winner'>

@@ -1,6 +1,6 @@
 <h1>Add Match</h1>
 
-<form action="http://localhost:4567/matches?tournament_id=<%= params['tournament_id'] %>" method='POST'>
+<form action="/matches?tournament_id=<%= params['tournament_id'] %>" method='POST'>
   <label for='stage'>Stage:</label>
   <select id='stage' name='stage_name'>
     <% @stages.each do |stage| %>
