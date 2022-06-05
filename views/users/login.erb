@@ -1,6 +1,56 @@
-<form action="http://localhost:4567/login" method="POST">
-    <input placeholder="username" name="username" type="username"></input>
-    <input placeholder="password" name="password" type="password"></input>
-    <input type="submit" value="Submit!"/>
-</form>
-<p>Don't have an account? <a href="http://localhost:4567/signup">Sign up!</a></p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <style>
+        html {
+            height: 100%;
+            background-color: #d30b0b;
+        }
+        body {
+            height: 100%;
+            background-color: #d30b0b;
+        }
+        a { text-decoration: none; 
+            color: black;} 
+    </style>
+    <body class="bg-dark text-light">
+        <div class="container w-50 h-100">
+        
+            <div class="row h-25 align-items-center">
+                <h1 class="text-center">PRODE</h1>
+            </div>
+
+			<div class="row align-items-center justify-content-center my-3">
+				
+                <div class="col d-flex justify-content-end">
+					<img width="60%" src="/images/loginho.png" class="img-fluid" alt="Prode logo">
+				</div>
+
+                <div class="col">
+                    <h2>Log in</h2>
+                    <form action="/login" method="POST">
+                        <div class="form p-1 my-2 border-light">
+                            <label for="username">Username</label>
+                            <input id="username" type="username" class="form-control" name="username" placeholder="Username">
+                        </div>
+
+                        <div class="form p-1 my-2">
+                            <label for="password">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" placeholder="password">
+                        </div>
+                        <div class="form-group p-1 my-3">
+							<button type="submit" class="btn btn-primary">Log in</button>
+                            <a href="/signup">Forgot password?</a>
+						</div>
+
+                    </form>
+                </div>
+            </div>
+    </body>
+
+</html>
