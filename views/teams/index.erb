@@ -3,14 +3,14 @@
 <ul>
   <% @teams.each do |team| %>
     <%= "<li>#{team.name}  -  #{team.country.name}
-      <a href=\"http://localhost:4567/teams/#{team.id}\"><button>Modify</button></a>
+      <a href=\"/teams/#{team.id}\"><button>Modify</button></a>
       <button form=#{team.id} type='submit'>Delete</button>
 
-      <form id=#{team.id} action=\"http://localhost:4567/teams/#{team.id}\" method='POST'>
+      <form id=#{team.id} action=\"/teams/#{team.id}\" method='POST'>
         <input type='hidden' name='_method' value='DELETE'>
       </form>
     </li>" %>
   <% end %>
 </ul>
 
-<a href='http://localhost:4567/teams/new'><button>Add</button></a>
+<a href='/teams/new'><button>Add</button></a>

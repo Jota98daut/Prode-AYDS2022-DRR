@@ -1,7 +1,7 @@
 <h1>Teams</h1>
 <h2><%= @team.name %></h2>
 
-<form action="http://localhost:4567/teams/<%= @team.id %>" method='POST'>
+<form action="/teams/<%= @team.id %>" method='POST'>
   <input type='hidden' name='_method' value='PATCH'>
   <label for='name'>Name:</label> <input id='name' name='name' type='text' placeholder='name' value='<%= @team.name%>' required>
   <label for='country'>Country:</label>
