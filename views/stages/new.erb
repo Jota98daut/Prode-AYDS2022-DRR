@@ -1,6 +1,6 @@
 <h1>Add Stage</h1>
 
-<form action="http://localhost:4567/stages?tournament_id=<%= params['tournament_id'] %>" method='POST'>
+<form action="/stages?tournament_id=<%= params['tournament_id'] %>" method='POST'>
     <label for='name'>Name: </label> <input id='name' name='name' type='text' placeholder='name'>
     <label for='penalties'>Penalties?:</label>
     <select name='penalties' id='penalties'>

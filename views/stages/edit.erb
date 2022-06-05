@@ -1,6 +1,6 @@
 <h1>Modify stage</h1>
 
-<form action="http://localhost:4567/stages/<%= @stage.id %>" method='POST'>
+<form action="/stages/<%= @stage.id %>" method='POST'>
   <input type='hidden' name='_method' value='PATCH'>
   <label for='name'>Name: </label> <input value=<%= @stage.name %> id='name' name='name' type='text' placeholder='name'></input>
   <label for='penalties'>Penalties?:</label>
