@@ -3,14 +3,14 @@
 <ul>
   <% @tournaments.each do |tournament| %>
     <%= "<li>#{tournament.name} 
-      <a href=\"http://localhost:4567/tournaments/#{tournament.id}\"><button>Modify</button></a>
+      <a href=\"/tournaments/#{tournament.id}\"><button>Modify</button></a>
       <button form='#{tournament.id}' type='submit'>Remove</button>
 
-      <form id='#{tournament.id}' action=\"http://localhost:4567/tournaments/#{tournament.id}\" method='POST'>
+      <form id='#{tournament.id}' action=\"/tournaments/#{tournament.id}\" method='POST'>
         <input type='hidden' name='_method' value='DELETE'>
       </form>
     </li>" %>
     <% end %>
 </ul>
 
-<a href='http://localhost:4567/tournaments/new'><button>Add</button></a>
+<a href='/tournaments/new'><button>Add</button></a>
