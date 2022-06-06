@@ -54,6 +54,7 @@ class App < Sinatra::Application
 
   get '/bets/new' do
     @tournament = Tournament.find_by id: params[:tournament_id]
+    @score = @tournament.scores.find_by player: @current_user
     @bets = Bet.where(player: @current_user)
     @matches = []
     @bets.each do |b|
