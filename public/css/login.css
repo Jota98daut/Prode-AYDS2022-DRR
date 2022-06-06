@@ -20,6 +20,12 @@ input {
     width: 40%;
 }
 
+body {
+    display:grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
 .green{
     background-color: rgb(16, 221, 123);
 }
