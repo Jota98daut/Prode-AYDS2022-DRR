@@ -42,6 +42,10 @@ body {
     background-color: #1e262a;
 }
 
+.grey3{
+    background-color: rgba(48,58,62,1);
+}
+
 .white{
     color: white;
 }
@@ -60,19 +64,4 @@ body {
 .gradientgrey{
     background: rgb(47,61,67);
     background: linear-gradient(145deg, rgba(47,61,67,1) 34%, rgba(30,38,42,1) 100%); 
-}
-
-.gradient4{
-    background: rgb(48,58,62);
-    background: linear-gradient(145deg, rgba(48,58,62,1) 34%, rgba(20,24,26,1) 100%); 
-}
-
-.gradient5{
-    background: rgb(18,214,86);
-    background: linear-gradient(151deg, rgba(18,214,86,1) 47%, rgba(17,153,142,1) 100%); 
-}
-
-.gradient6{
-    background: rgb(33,186,86);
-    background: linear-gradient(145deg, rgba(33,186,86,1) 60%, rgba(17,153,142,1) 100%); 
 }

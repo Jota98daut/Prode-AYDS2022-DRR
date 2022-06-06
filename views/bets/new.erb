@@ -19,7 +19,7 @@
             color: black;
         } 
     </style>
-    <body class="gradientgrey text-light">
+    <body class="grey3 text-light">
         <nav class="navbar gradientgreen py-2">
             <a class="navbar-brand mx-3" href="/">
                 <img src="/images/loginho.png" width="35" class="d-inline-block align-top" alt="">
@@ -60,7 +60,7 @@
                                     #{"<td><input form=#{match.id} class='form-check-input' type='checkbox' name='penalties' value=1></td>" if match.stage.penalties}
                                     <td><button class='btn white green' form=#{match.id} type='submit'>Predict</td>
                                 </tr>
-                                
+
                                 <form id=#{match.id} action=\"/bets?match_id=#{match.id}\" method='POST'></form>
                                 " 
                             end %>
