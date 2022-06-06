@@ -45,7 +45,8 @@
                                 #{"<th>Draw</th>" if not stage.penalties}
                                 <th>Date</th>
                                 <th>Time</th>
-                                #{"<th>Penalties?</th>" if stage.penalties}
+                                #{"<th>Draw / Penalties</th>" if stage.penalties}
+                                <th>
                             </tr>             
                         " %>
                         <% stage.matches.each do |match| %>
