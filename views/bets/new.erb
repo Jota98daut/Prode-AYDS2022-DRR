@@ -26,6 +26,7 @@
                 <h4 class="d-inline-flex white">Prode</h4>
             </a>
             <form action='/logout' method='GET'>
+                <b><%=@score.points%> Points | </b>
                 Hi <%= @current_user.username %>!
                 <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
             </form>
