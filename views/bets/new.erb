@@ -27,7 +27,7 @@
             </a>
             <form action='/logout' method='GET'>
                 <b><%=@score.points%> Points | </b>
-                Hi <%= @current_user.username %>!
+                <%= @current_user.username %>
                 <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
             </form>
         </nav>
