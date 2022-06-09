@@ -6,10 +6,11 @@ Admin.create username: 'admin', password: 'admin', password_confirmation: 'admin
 # Create sports
 
 football = Sport.create name: 'Football'
-Sport.create name: 'Basketball'
+basketball = Sport.create name: 'Basketball'
 Sport.create name: 'League of Legends'
-Sport.create name: 'Counter Strike: Global Offensive'
+csgo = Sport.create name: 'Counter Strike: Global Offensive'
 Sport.create name: 'Tennis'
+tabletennis = Sport.create name: 'Table tennis'
 Sport.create name: 'Baseball'
 Sport.create name: 'Volleyball'
 Sport.create name: 'Boxing'
@@ -264,11 +265,21 @@ tnz = Team.create name: 'New Zealand', country: nz
 # Create tournaments
 
 worldcup = Tournament.create name: 'FIFA World Cup 2022', sport: football
+Tournament.create name: 'Copa América 2021', sport: football
+Tournament.create name: 'FIBA Basketball World Cup 2019', sport: basketball
+Tournament.create name: 'IEM Rio Major 2022', sport: csgo
+Tournament.create name: 'World Table Tennis Championship 2022', sport: tabletennis
+
 
 
 # Create stages
 
 groups = Stage.create name: 'Group stage', penalties: false, tournament: worldcup
+Stage.create name: 'Round of 16', penalties: true, tournament: worldcup
+Stage.create name: 'Quarter-finals', penalties: true, tournament: worldcup
+Stage.create name: 'Semi-finals', penalties: true, tournament: worldcup
+Stage.create name: 'Third place play-off', penalties: true, tournament: worldcup
+Stage.create name: 'Final', penalties: true, tournament: worldcup
 
 
 # Create matches
