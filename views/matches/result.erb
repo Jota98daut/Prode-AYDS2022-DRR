@@ -1,17 +1,116 @@
-<h1>Set match result</h1>
-
-<p>Match details:</p>
-<p><%= @match.stage.tournament.name + " | " + @match.stage.name + " | " + @match.home.name + " - " + @match.away.name + " | " + @match.date.to_s + " | " + @match.time.to_s %>
-
-<form action='/matches/result/<%= @match.id %>' method='POST'>
-  <input type='hidden' name='_method' value='PATCH'>
-  <label for='winner'>Winner</label>
-  <select id='winner' name='winner'>
-    <option value=<%= @match.home_id %>><%= @match.home.name %></option>
-    <option value=<%= @match.away_id %>><%= @match.away.name %></option>
-    <option value='draw'>Draw</option>
-  </select>
-  <label for='penalties'>Were there penalties?</label>
-  <input type='checkbox' id='penalties' name='penalties' value='1'>
-  <button type='submit'>Update</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Set match result</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/login.css">
+    </head>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        a { 
+            text-decoration: none; 
+            color: black;
+        } 
+    </style>
+    <body class="grey3 text-light">
+        <nav class="navbar gradientgreen py-2">
+            <a class="navbar-brand mx-3" href="/">
+                <img src="/images/loginho.png" width="35" class="d-inline-block align-top" alt="">
+                <h4 class="d-inline-flex white">Prode</h4>
+            </a>
+            <form action='/logout' method='GET'>
+                <%= @current_user.username %>
+                <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
+            </form>
+        </nav>
+        <div class="container w-75 my-5"> 
+            <div class="row my-3"><h3>Update match</h3>
+            </div>
+            <div class="rounded" id="tablescroll"> 
+                <table class="table responsive table-dark table-striped white">
+                    <tr>
+                        <th>Tournament</th>
+                        <th>Stage</th>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Winner</th>
+                        <th>By penalties?</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="mt-2">
+                          <%= @match.stage.tournament.name%>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mt-2">
+                        <%= @match.stage.name%>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mt-2">
+                          <%= @match.home.name%>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mt-2">
+                         <%= @match.away.name%>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mt-2">
+                          <%= @match.date.to_s%>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="mt-2">
+                          <%= @match.time.to_s%>
+                        </div>
+                      </td>
+                      <form action='/matches/result/<%= @match.id %>' method='POST'>
+                        <input type='hidden' name='_method' value='PATCH'>
+                        <td>
+                          <div class="d-flex justify-content-end mt-1 ">
+                            <select id='winner' name='winner' class='form-select form-select-sm form-control form-control-sm' aria-label='form-select-sm example'>
+                              <option value=<%= @match.home_id %>><%= @match.home.name %></option>
+                              <option value=<%= @match.away_id %>><%= @match.away.name %></option>
+                              <option value='draw'>Draw</option>
+                            </select>
+                        </div>
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-center mt-2">
+                          <input id='penalties' class='form-check-input' type='checkbox' name='penalties' value=1>
+                          </div>
+                        </td>
+                        <td>
+                          <button type='submit' class="btn white green">Update</button>
+                        </td>
+                      </form>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container-fliud p-3 pt-2 grey2 ">
+            <div class="row justify-content-center">
+                <h3 class="text-center">Group 3</h2>
+            </div>
+            <div class="row py-0 justify-content-center">
+                D'Autilio Joel, Rojo Jonathan, Rossi Pablo.
+            </div>
+        </div> 
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    </body>
+</html>
