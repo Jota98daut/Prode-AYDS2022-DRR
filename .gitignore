@@ -1,6 +1,4 @@
 # Don't track databases
 
-*.sqlite3
 *.sql*
-db/*.sqlite3
-db/*.sql*
+schema.rb
