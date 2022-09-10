@@ -146,13 +146,13 @@ describe 'Bet' do
   describe 'when a bet is submitted' do
     describe 'and it is valid' do
       it 'should add it correctly' do
-        player = Player.new(username: 'player', password: '1234')
-        team_A = Team.new(name: 'teamA')
-        team_B = Team.new(name: 'teamB')
-        stage = Stage.new(name: 'stageA', penalties: true)
-        match = Match.new(draw: false, home: team_A, away: team_B)
-        id = match.id
-        expect(Match.find_by(id:id).first)
+        player = Player.create(username: 'player', password: '1234')
+        team_A = Team.create(name: 'teamA')
+        team_B = Team.create(name: 'teamB')
+        tournament = Tournament.create(name: 'copita')
+        stage = Stage.create(name: 'stageA', penalties: true, tournament: tournament)
+        match = Match.new(draw: false, home: team_A, away: team_B, stage: stage)
+        expect(match.save).to eq(true)
       end
     end
   end
