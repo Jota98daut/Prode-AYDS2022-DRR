@@ -14,9 +14,12 @@ module MatchHelper
         match.time = params[:time]
         match.home = Team.find_by(name: params[:home_name])
         match.away = Team.find_by(name: params[:away_name])
-        match.save
-
-        redirect "/tournaments/" + params[:tournament_id]
+        if match.save
+            redirect "/tournaments/" + params[:tournament_id]
+        elsif match.home == match.away
+            flash[:warning] = "teams must be different"
+            redirect '/matches/new?tournament_id=' + params[:tournament_id]
+        end
     end
 
     def get_match

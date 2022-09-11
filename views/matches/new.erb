@@ -104,6 +104,13 @@
                           </form>
                         </tr>
                 </table>
+
+                <% flash.keys.each do |type| %>
+                    <div data-alert class="mx-2 alert alert-warning">
+                        <%= flash[type] %>
+                    </div>
+                <% end %>
+
             </div>
         </div>
         <div class="container-fliud p-3 pt-2 grey2 ">
