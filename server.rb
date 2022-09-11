@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'bundler/setup'
-require "sinatra/activerecord"
+require 'sinatra/activerecord'
+require 'sinatra/flash'
 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
 

@@ -43,6 +43,13 @@
                             <label for="password">Password</label>
                             <input id="password" type="password" class="form-control" name="password" placeholder="password" required>
                         </div>
+
+                        <% flash.keys.each do |type| %>
+                            <div data-alert class="mx-2 alert alert-warning">
+                                <%= flash[type] %>
+                            </div>
+                        <% end %>
+
                         <div class="form-group p-1 my-2">
 							<button type="submit" class="btn white green mx-1">Log in</button>
                             <a class="white" href="/signup">Don't have an account yet?</a>

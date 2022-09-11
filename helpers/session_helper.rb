@@ -26,6 +26,17 @@ module SessionHelper
         session[:user_id] = player.id
         redirect '/'  # O será mejor redirigir al login??
       else
+        if(params[:username] == '')
+          flash[:warning] = "username must be provided"
+        elsif(User.find_by(username: params[:username]))
+          flash[:warning] = "username already exists"
+        elsif(params[:password] == '')
+          flash[:warning] = "password must be provided"
+        elsif(params[:password_confirmation] == '')
+          flash[:warning] = "password confirmation must be provided"
+        elsif(params[:password] != params[:password_confirmation])
+          flash[:warning] = "passwords don't match"
+        end
         redirect '/signup'
       end
     end
@@ -47,9 +58,11 @@ module SessionHelper
           session[:user_id] = user.id
           redirect '/'
         else
+          flash[:warning] = "incorrect password"
           redirect '/login'
         end 
       else
+        flash[:warning] = "user doesn't exist"
         redirect 'login'
       end
     end
