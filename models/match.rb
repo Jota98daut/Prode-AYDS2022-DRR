@@ -6,8 +6,9 @@ class Match < ActiveRecord::Base
     belongs_to :stage
     
     validates :home, presence: true
-    validates :away , presence: true
-    validates :stage , presence: true
+    validates :away, presence: true
+    validates :stage, presence: true
+    validates :home, comparison: { other_than: :away }
 
     after_update :calculate_points, if: :result_charged?
 
