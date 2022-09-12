@@ -197,7 +197,7 @@ class App < Sinatra::Application
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
     else
-      public_pages = ["/", "/login", "/signup"]
+      public_pages = ["/", "/login", "/signup", "/info"]
       if !public_pages.include?(request.path_info)
         redirect '/login'
       end
