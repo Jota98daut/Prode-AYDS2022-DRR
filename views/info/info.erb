@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lobby</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/login.css">
+        <style>
+            html {
+                height: 100%;
+            }
+            body {
+                height: 100%;
+            }
+            a { 
+                text-decoration: none; 
+                color: black;
+            } 
+        </style>
+    </head>
+    <body class="grey3 text-light">
+        <nav class="navbar gradientgreen py-2">
+            <a class="navbar-brand mx-3" href="/">
+                <img src="/logo/navbarlogo.png" width="165" class="d-inline-block align-top" alt="">
+            </a>
+            <form action='/logout' method='GET'>
+                Hi <%= @current_user.username %>!
+                <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
+            </form>
+        </nav>
+        <div class="container w-50 my-3">
+            <div class="row my-3 justify-content-center"> <h2 class="text-center">About Predicted</h2> </div>
+            <div class="row my-3 d-flex justify-content-center">
+                <p>
+                Predicted is a tournament betting site for all kinds of sports. In the lobby you can see a list of all tournaments loaded so far.
+                </p>
+                <p>
+                By choosing a tournament, you will be redirected to a page where you can see your current bets if you have ever bet on the chosen tournament. On this page you have the chance to add a new bet as well as you can see the accumulated points in the header of the page.
+                </p>
+                <p>
+                When adding a new bet you can appreciate that the matches are ordered by stages.
+                </p>
+                <p>
+                In the event that a stage does not allow definition by penalties, you will have the possibility to choose either the winning team or a tie.
+                </p>
+                <table class='table responsive table-dark table-striped'>
+                    <tr>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Draw</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>
+                    </tr>
+                    <tr>
+                        <td><label for='Qatar'>Qatar</label><input class='form-check-input mx-1' id='Qatar' type='radio' name='winner'></td>
+                        <td><label for='Belgium'>Belgium</label><input class='form-check-input mx-1' id='Blegium' type='radio' name='winner'></td>
+                        <td><input class='form-check-input' type='radio' value='draw' name='winner'></td>
+                        <td>24-11-2022</td>
+                        <td>07:00</td>
+                        <td><button class='btn white green' type='submit'>Predict</td>
+                    </tr>
+                </table>
+                <p>
+                Otherwise, you will not only have the opportunity to choose the winner of the match but also choose whether it won on penalties or not.
+                </p>
+                <table class='table responsive table-dark table-striped'>
+                    <tr>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Draw/Penalties</th>
+                        <th>
+                    </tr>
+                    <tr>
+                        <td><label for='Qatar'>Qatar</label><input class='form-check-input mx-1' id='Qatar' type='radio' name='winner'></td>
+                        <td><label for='Belgium'>Belgium</label><input class='form-check-input mx-1' id='Blegium' type='radio' name='winner'></td>
+                        <td>22-12-2022</td>
+                        <td>16:00</td>
+                        <td><input  class='form-check-input' type='checkbox' name='penalties'></td>
+                        <td><button class='btn white green' type='submit'>Predict</td>
+                    </tr>
+                </table>
+                <p>
+                Once the match results have been uploaded, the points earned will be reflected in the appropriate tournament section. The point system is as follows:
+                </p>
+
+                <b> Common Matches </b>
+                <table class='table responsive table-dark table-striped'>
+                    <tr>
+                        <td> * Guess the winner</td>
+                        <td class="table-success">  <div class="text-center"><b> +1 </b> <div></td>
+                    </tr>
+                    <tr>
+                        <td> * Hit the tie</td>
+                        <td class="table-success">  <div class="text-center"><b> +1 </b> <div></td>
+                    </tr>
+                    <tr>
+                        <td> * Other case</td>
+                        <td class="table-danger">  <div class="text-center"><b> +0 </b> <div></td>
+                    </tr>
+                </table>
+
+                <b> Knockout Matches</b>
+                <table class='table responsive table-dark table-striped'>
+                    <tr>
+                        <td> * Guess the winner  +  Penalty forecast</td>
+                        <td class="table-success">  <div class="text-center"><b> +2 </b> <div></td>
+                    </tr>
+                    <tr>
+                        <td> * Guess the winner only</td>
+                        <td class="table-success">  <div class="text-center"><b> +1 </b> <div></td>
+                    </tr>
+                    <tr>
+                        <td> * Guess the penalty forecast only</td>
+                        <td class="table-success">  <div class="text-center"><b> +1 </b> <div></td>
+                    </tr>
+                    <tr>
+                        <td> * Other case </td>
+                        <td class="table-danger">  <div class="text-center"><b> +0 </b> <div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container-fliud p-3 pt-2 grey2 ">
+            <div class="row justify-content-center">
+                <h3 class="text-center">Group 3</h2>
+            </div>
+            <div class="row py-0 justify-content-center">
+                    D'Autilio Joel, Rojo Jonathan, Rossi Pablo.
+            </div>
+        </div> 
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+    </body>
+</html>
