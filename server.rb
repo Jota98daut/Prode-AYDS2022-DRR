@@ -189,6 +189,10 @@ class App < Sinatra::Application
     patch_team
   end
 
+  get '/info' do
+    erb :'info/info'
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
