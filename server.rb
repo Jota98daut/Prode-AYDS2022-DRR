@@ -18,6 +18,7 @@ class App < Sinatra::Application
   helpers StageHelper
   helpers MatchHelper
   helpers TeamHelper
+  helpers RankingHelper
 
   configure :development do
     register Sinatra::Reloader
@@ -191,6 +192,10 @@ class App < Sinatra::Application
 
   get '/info' do
     erb :'info/info'
+  end
+
+  get '/rankings/:tournament_id' do
+    get_rankings
   end
 
   before do
