@@ -48,8 +48,9 @@
                         <th>Away</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Winner</th>
-                        <th>By penalties</th>
+                        <th class="text-center">Winner</th>
+                        <th class="text-center">By penalties</th>
+                        <th class="text-center">Points</th>
                     </tr>
                     <% @bets.each do |bet| %>
                     <%= "
@@ -59,8 +60,9 @@
                             <td>#{bet.match.away.name}</td>
                             <td>#{bet.match.date}</td>
                             <td>#{bet.match.time.strftime("%H:%M")}</td>
-                            <td>#{if bet.team then bet.team.name else '-' end}</td>
-                            <td>#{if bet.draw then 'yes' else 'no' end}</td>
+                            <td class=\"text-center\"class=\"text-center\">#{if bet.team then bet.team.name else '-' end}</td>
+                            <td class=\"text-center\">#{if bet.draw then 'yes' else 'no' end}</td>
+                            <td class=\"text-center\">#{if bet.no_points_charged then '-' elsif bet.points >= 1 then '<p class="bg-success">' + bet.points.to_s + '<p>' else '<p class="bg-danger">' + bet.points.to_s + '<p>' end }</td>
                         </tr>
                         " %>
                     <% end %>
