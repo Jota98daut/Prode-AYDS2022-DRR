@@ -38,7 +38,9 @@
             </form>
         </nav>
         <div class="container w-75 my-5"> 
-            <div class="row my-3"><h3> <%= @tournament.name %> - Forecasts </h3>
+            <div class="row my-3"><h3> <%= @tournament.name %> </h3>
+            </div>
+            <div class="row my-3"><h4> Forecasts </h4>
             </div>
             <div class="rounded" id="tablescroll"> 
                 <table class="table responsive table-dark table-striped white">
@@ -48,8 +50,8 @@
                         <th>Away</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Winner</th>
-                        <th>By penalties</th>
+                        <th>Expected Winner</th>
+                        <th>Expected penalties</th>
                     </tr>
                     <% @bets.each do |bet| %>
                     <%= "
@@ -67,8 +69,64 @@
                 </table>
             </div>
             <a href="/bets/new?tournament_id=<%= "#{@tournament.id}" %>"> 
-                <button class="btn white green mx-1">Add Forcast</button>
+                <button class="btn white green mx-1">Add Forecast</button>
             </a>
+            <div class="row my-3"><h4> Finished Forcasts</h4>
+            </div>
+            <div class="rounded" id="tablescroll"> 
+                <table class="table responsive table-dark table-striped white">
+                    <tr>
+                        <th>Stage</th>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Date</th>
+                        <th>Winner</th>
+                        <th>By penalties</th>
+                    </tr>
+                    <% @bets.each do |bet| %>
+                    <% if bet.match.result_charged? %>
+                    <%= "
+                        <tr>
+                            <td>#{bet.match.stage.name}</td>
+                            <td>#{bet.match.home.name}</td>
+                            <td>#{bet.match.away.name}</td>
+                            <td>#{bet.match.date}</td>
+                            <td>#{if bet.match.winner then bet.match.winner.name else '-' end}</td>
+                            <td>#{if bet.match.draw then 'yes' else 'no' end}</td>
+                        </tr>
+                        " %>
+                    <% end %>
+                    <% end %>
+                </table>
+            </div>
+            <div class="row my-3"><h4>Available Forecasts</h4>
+            </div>
+            <div class="rounded" id="tablescroll"> 
+                <table class="table responsive table-dark table-striped white">
+                    <tr>
+                        <th>Stage</th>
+                        <th>Home</th>
+                        <th>Away</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                    <% @tournament.stages.each do |stage| %>
+                        <% stage.matches.each do |match| %>
+                        <%= if not (@current_user.bets.find_by match: match or match.result_charged?) then
+                            "
+                            <tr>
+                                <td>#{match.stage.name}</td>
+                                <td><label for='home_#{match.id}'>#{match.home.name}</label></td>
+                                <td><label for='away_#{match.id}'>#{match.away.name}</label></td>
+                                <td>#{match.date}</td>
+                                <td>#{match.time.strftime('%H:%M')}</td>
+                            </tr>
+                            " 
+                        end %>
+                    <% end %>
+                    <% end %>
+                </table>
+            </div>
         </div>
         <div class="container-fliud p-3 pt-2 grey2 ">
             <div class="row justify-content-center">
