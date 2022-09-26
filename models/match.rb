@@ -17,10 +17,12 @@ class Match < ActiveRecord::Base
     end
 
     def calculate_points 
-      t = stage.tournament
-      bets.each do |bet|  
+      t = stage.tournament 
+      bets.each do |bet| 
           player_score = (bet.player.scores.select {|score| score.tournament == t}).first
-          player_score.update( points: player_score.points + bet.points )
+          new_points = bet.calculate_points
+          bet.update( points: new_points ) 
+          player_score.update( points: player_score.points + new_points ) 
       end
     end
 end

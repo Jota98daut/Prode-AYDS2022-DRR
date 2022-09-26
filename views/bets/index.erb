@@ -50,10 +50,11 @@
                         <th>Away</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Expected Winner</th>
-                        <th>Expected penalties</th>
+                        <th class="text-center">Expected Winner</th>
+                        <th class="text-center">Expected penalties</th>
                     </tr>
                     <% @bets.each do |bet| %>
+                    <% if bet.no_points_charged %>
                     <%= "
                         <tr>
                             <td>#{bet.match.stage.name}</td>
@@ -61,10 +62,11 @@
                             <td>#{bet.match.away.name}</td>
                             <td>#{bet.match.date}</td>
                             <td>#{bet.match.time.strftime("%H:%M")}</td>
-                            <td>#{if bet.team then bet.team.name else '-' end}</td>
-                            <td>#{if bet.draw then 'yes' else 'no' end}</td>
+                            <td class=\"text-center\"class=\"text-center\">#{if bet.team then bet.team.name else 'draw' end}</td>
+                            <td class=\"text-center\">#{if bet.match.stage.penalties then if bet.draw then 'yes' else 'no' end else '-' end}</td>
                         </tr>
                         " %>
+                    <% end %>
                     <% end %>
                 </table>
             </div>
@@ -82,6 +84,7 @@
                         <th>Date</th>
                         <th>Winner</th>
                         <th>By penalties</th>
+                        <th>Points</th>
                     </tr>
                     <% @bets.each do |bet| %>
                     <% if bet.match.result_charged? %>
@@ -93,6 +96,8 @@
                             <td>#{bet.match.date}</td>
                             <td>#{if bet.match.winner then bet.match.winner.name else '-' end}</td>
                             <td>#{if bet.match.draw then 'yes' else 'no' end}</td>
+                            <td class=\"text-center\">#{if bet.no_points_charged then '-' elsif bet.points >= 1 then '<p class="bg-success">' + bet.points.to_s + '<p>' else '<p class="bg-danger">' + bet.points.to_s + '<p>' end }</td>
+
                         </tr>
                         " %>
                     <% end %>
