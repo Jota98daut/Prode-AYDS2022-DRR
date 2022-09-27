@@ -10,6 +10,10 @@ class Player < User
     has_many :championbets
     has_many :bets
     has_many :scores
+
+    def score_for(tournament_id)
+        return Score.find_by(player_id: id, tournament_id: tournament_id).points
+    end
 end
 
 class Admin < User
