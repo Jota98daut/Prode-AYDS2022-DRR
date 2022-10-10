@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'database_cleaner'
@@ -7,7 +9,7 @@ ENV['APP_ENV'] ||= 'test'
 
 ActiveRecord::Base.logger.level = 1
 
-require File.expand_path('../../config/environment.rb', __FILE__)
+require File.expand_path('../config/environment.rb', __dir__)
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -20,7 +22,6 @@ RSpec.configure do |config|
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -29,7 +30,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
 
@@ -40,5 +41,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
 end

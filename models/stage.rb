@@ -1,6 +1,8 @@
-class Stage < ActiveRecord::Base
-    belongs_to :tournament
-    has_many :matches
+# frozen_string_literal: true
 
-    validates :tournament, presence: true
+class Stage < ActiveRecord::Base
+  belongs_to :tournament
+  has_many :matches
+
+  validates :tournament, presence: true
 end

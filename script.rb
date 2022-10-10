@@ -1,10 +1,12 @@
-teamA = Team.where(id:1).first
-teamB = Team.where(id:2).first
+# frozen_string_literal: true
 
-match = Match.where(id:1).first
+teamA = Team.where(id: 1).first
+teamB = Team.where(id: 2).first
 
-bet = Bet.where(id:1).first
+match = Match.where(id: 1).first
 
-score = Score.where(id:1).first
+bet = Bet.where(id: 1).first
+
+score = Score.where(id: 1).first
 
 score

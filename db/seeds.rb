@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 # Create admin user
 
 Admin.create username: 'admin', password: 'admin', password_confirmation: 'admin'
-
 
 # Create sports
 
@@ -21,7 +22,6 @@ Sport.create name: 'Dota 2'
 Sport.create name: 'Rocket League'
 Sport.create name: 'Overwatch'
 Sport.create name: 'Valorant'
-
 
 # Create countries
 
@@ -222,7 +222,6 @@ Country.create name: 'Yemen'
 Country.create name: 'Zambia'
 Country.create name: 'Zimbabwe'
 
-
 # Create teams
 
 tqatar = Team.create name: 'Qatar', country: qatar
@@ -261,7 +260,6 @@ tperu = Team.create name: 'Peru', country: peru
 tcr = Team.create name: 'Costa Rica', country: cr
 tnz = Team.create name: 'New Zealand', country: nz
 
-
 # Create tournaments
 
 worldcup = Tournament.create name: 'FIFA World Cup 2022', sport: football
@@ -269,8 +267,6 @@ Tournament.create name: 'Copa América 2021', sport: football
 Tournament.create name: 'FIBA Basketball World Cup 2019', sport: basketball
 Tournament.create name: 'IEM Rio Major 2022', sport: csgo
 Tournament.create name: 'World Table Tennis Championship 2022', sport: tabletennis
-
-
 
 # Create stages
 
@@ -280,7 +276,6 @@ Stage.create name: 'Quarter-finals', penalties: true, tournament: worldcup
 Stage.create name: 'Semi-finals', penalties: true, tournament: worldcup
 Stage.create name: 'Third place play-off', penalties: true, tournament: worldcup
 Stage.create name: 'Final', penalties: true, tournament: worldcup
-
 
 # Create matches
 

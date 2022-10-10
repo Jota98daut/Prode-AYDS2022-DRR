@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra/base'
 require 'bundler/setup'
 require 'sinatra/activerecord'
@@ -9,7 +11,6 @@ require_relative 'models/init'
 require_relative 'helpers/helpers'
 
 class App < Sinatra::Application
-
   helpers SessionHelper
   helpers LobbyHelper
   helpers SportHelper
@@ -34,7 +35,7 @@ class App < Sinatra::Application
     set :public_folder, 'public'
   end
 
-  def initialize(app = nil)
+  def initialize(_app = nil)
     super()
   end
 
@@ -63,7 +64,7 @@ class App < Sinatra::Application
   end
 
   get '/signup' do
-   get_signup
+    get_signup
   end
 
   post '/signup' do
@@ -75,7 +76,7 @@ class App < Sinatra::Application
   end
 
   get '/login' do
-  get_login
+    get_login
   end
 
   post '/login' do
@@ -134,7 +135,7 @@ class App < Sinatra::Application
     delete_stage
   end
 
-  patch '/stages/:id' do 
+  patch '/stages/:id' do
     patch_stage
   end
 
@@ -174,7 +175,7 @@ class App < Sinatra::Application
     get_teams_new
   end
 
-  post '/teams' do 
+  post '/teams' do
     post_teams
   end
 
@@ -182,7 +183,7 @@ class App < Sinatra::Application
     delete_team
   end
 
-  get '/teams/:id' do 
+  get '/teams/:id' do
     get_team
   end
 
@@ -202,10 +203,8 @@ class App < Sinatra::Application
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
     else
-      public_pages = ["/", "/login", "/signup", "/info"]
-      if !public_pages.include?(request.path_info)
-        redirect '/login'
-      end
+      public_pages = ['/', '/login', '/signup', '/info']
+      redirect '/login' unless public_pages.include?(request.path_info)
     end
   end
 end

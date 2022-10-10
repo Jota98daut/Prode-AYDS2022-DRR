@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Score < ActiveRecord::Base
   belongs_to :player
   belongs_to :tournament

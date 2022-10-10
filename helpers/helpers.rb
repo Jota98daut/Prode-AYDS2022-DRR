@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'bet_helper'
 require_relative 'lobby_helper'
 require_relative 'session_helper'
