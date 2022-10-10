@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+  # frozen_string_literal: true
 
 class Match < ActiveRecord::Base
   has_many :bets
@@ -26,5 +26,13 @@ class Match < ActiveRecord::Base
       bet.update(points: new_points)
       player_score.update(points: player_score.points + new_points)
     end
+  end
+
+  def set_params(params)
+    stage = Stage.find_by(name: params[:stage_name]) or stage
+    date = params[:date] or date
+    time = params[:time] or time
+    home = Team.find_by(name: params[:home_name]) or home
+    away = Team.find_by(name: params[:away_name]) or away
   end
 end

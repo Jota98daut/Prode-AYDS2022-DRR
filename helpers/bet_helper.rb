@@ -21,15 +21,11 @@ module BetHelper
   end
 
   def post_bets
-    match = Match.find_by id: params[:match_id]
-    bet = Bet.new match: match, player: @current_user
-    bet.draw = false
-    if params[:winner] == 'draw'
-      bet.draw = true
-    else
-      bet.team = Team.find_by id: params[:winner]
-    end
-    bet.draw = true if params[:penalties]
+    winner = params[:winner]
+    match = Match.find_by(id: params[:match_id])
+    bet = Bet.new(match: match, player: @current_user)
+    bet.draw = (winner == 'draw' or params[:penalties])
+    bet.team_id = winner
     bet.save
 
     redirect "/bets?tournament_id=#{match.stage.tournament.id}"

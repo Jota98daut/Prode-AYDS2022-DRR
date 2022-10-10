@@ -10,17 +10,15 @@ module MatchHelper
 
   def post_matches
     match = Match.new
-    match.stage = Stage.find_by(name: params[:stage_name])
-    match.date = params[:date]
-    match.time = params[:time]
-    match.home = Team.find_by(name: params[:home_name])
-    match.away = Team.find_by(name: params[:away_name])
+    tournament_id = params[:tournament_id]
+
+    match.set_params(params)
     if match.save
-      redirect "/tournaments/#{params[:tournament_id]}"
-    elsif match.home == match.away
-      flash[:warning] = 'teams must be different'
-      redirect "/matches/new?tournament_id=#{params[:tournament_id]}"
+      redirect "/tournaments/#{tournament_id}"
     end
+
+    flash[:warning] = 'teams must be different'
+    redirect "/matches/new?tournament_id=#{tournament_id}"
   end
 
   def get_match
@@ -31,10 +29,7 @@ module MatchHelper
 
   def patch_match
     match = Match.find_by(id: params[:id])
-    match.date = params[:date]
-    match.time = params[:time]
-    match.home = Team.find_by(name: params[:home_name])
-    match.away = Team.find_by(name: params[:away_name])
+    match.set_params(params)
     match.save
 
     redirect "/tournaments/#{match.stage.tournament_id}"

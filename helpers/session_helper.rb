@@ -22,22 +22,13 @@ module SessionHelper
     player = Player.new(params)
     if player.save
       Tournament.all.each do |tournament|
-        Score.create player: player, points: 0, tournament: tournament
+        Score.create(player: player, points: 0, tournament: tournament)
       end
       session[:user_id] = player.id
       redirect '/' # O será mejor redirigir al login??
     else
-      if params[:username] == ''
-        flash[:warning] = 'username must be provided'
-      elsif User.find_by(username: params[:username])
-        flash[:warning] = 'username already exists'
-      elsif params[:password] == ''
-        flash[:warning] = 'password must be provided'
-      elsif params[:password_confirmation] == ''
-        flash[:warning] = 'password confirmation must be provided'
-      elsif params[:password] != params[:password_confirmation]
-        flash[:warning] = "passwords don't match"
-      end
+      flash[:warning] = error_message(params[:username], params[:password], params[:password_confirmation])
+
       redirect '/signup'
     end
   end
@@ -67,4 +58,17 @@ module SessionHelper
       redirect 'login'
     end
   end
+
+  def error_message(username, password, password_confirmation):
+    if username == ''
+      return 'username must be provided'
+    elsif User.find_by(username: username)
+      return 'username already exists'
+    elsif password == ''
+      return 'password must be provided'
+    elsif password_confirmation == ''
+      return = 'password confirmation must be provided'
+    elsif password != password_confirmation
+      return "passwords don't match"
+    end
 end
