@@ -1,7 +1,7 @@
 require_relative '../models/init'
 
-describe 'User' do
-    describe 'when an user is submitted' do
+describe "User" do 
+    describe 'When an user is submitted passing three arguments' do
         describe 'and it is valid' do
             it 'should add it correctly' do
                 u = User.create(username: "jlennon", password: "yesterday", password_confirmation: "yesterday")
@@ -23,7 +23,11 @@ describe 'User' do
                 expect(w.save).to eq(false)
             end
         end
+    end
+end
 
+describe "User" do
+    describe "when an user is submitted but some information is missing" do
         describe 'and the password is empty' do
             it 'shouldn\'t be added' do
                 u = User.new(username: "jlennon", password: '', password_confirmation: '')
