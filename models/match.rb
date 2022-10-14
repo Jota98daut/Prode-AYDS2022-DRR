@@ -27,12 +27,4 @@ class Match < ActiveRecord::Base
       player_score.update(points: player_score.points + new_points)
     end
   end
-
-  def set_params(params)
-    stage = Stage.find_by(name: params[:stage_name]) or stage
-    date = params[:date] or date
-    time = params[:time] or time
-    home = Team.find_by(name: params[:home_name]) or home
-    away = Team.find_by(name: params[:away_name]) or away
-  end
 end

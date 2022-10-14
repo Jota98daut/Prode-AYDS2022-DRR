@@ -12,7 +12,7 @@ module MatchHelper
     match = Match.new
     tournament_id = params[:tournament_id]
 
-    match.set_params(params)
+    set_params(match, params)
     if match.save
       redirect "/tournaments/#{tournament_id}"
     end
@@ -29,7 +29,7 @@ module MatchHelper
 
   def patch_match
     match = Match.find_by(id: params[:id])
-    match.set_params(params)
+    set_params(match, params)
     match.save
 
     redirect "/tournaments/#{match.stage.tournament_id}"
@@ -59,5 +59,13 @@ module MatchHelper
 
     match.save
     redirect "/tournaments/#{match.stage.tournament_id}"
+  end
+
+  def set_params(match, params)
+    match.stage = (Stage.find_by(name: params[:stage_name]) or match.stage)
+    match.date = params[:date]
+    match.time = params[:time]
+    match.home = Team.find_by(name: params[:home_name])
+    match.away = Team.find_by(name: params[:away_name])
   end
 end
