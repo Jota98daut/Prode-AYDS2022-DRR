@@ -1,0 +1,10 @@
+Inspecting 53 files
+.............................................C.......
+
+Offenses:
+
+server.rb:13:1: C: Metrics/ClassLength: Class has too many lines. [152/100]
+class App < Sinatra::Application ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+53 files inspected, 1 offense detected

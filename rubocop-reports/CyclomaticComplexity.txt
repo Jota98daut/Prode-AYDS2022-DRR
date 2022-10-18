@@ -1,0 +1,10 @@
+Inspecting 53 files
+............................C........................
+
+Offenses:
+
+helpers/session_helper.rb:21:3: C: Metrics/CyclomaticComplexity: Cyclomatic complexity for post_signup is too high. [8/7]
+  def post_signup ...
+  ^^^^^^^^^^^^^^^
+
+53 files inspected, 1 offense detected

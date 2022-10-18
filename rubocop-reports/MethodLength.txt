@@ -1,0 +1,19 @@
+Inspecting 53 files
+.......................C..C.C........................
+
+Offenses:
+
+helpers/bet_helper.rb:23:3: C: Metrics/MethodLength: Method has too many lines. [11/10]
+  def post_bets ...
+  ^^^^^^^^^^^^^
+helpers/match_helper.rb:11:3: C: Metrics/MethodLength: Method has too many lines. [12/10]
+  def post_matches ...
+  ^^^^^^^^^^^^^^^^
+helpers/session_helper.rb:21:3: C: Metrics/MethodLength: Method has too many lines. [21/10]
+  def post_signup ...
+  ^^^^^^^^^^^^^^^
+helpers/session_helper.rb:54:3: C: Metrics/MethodLength: Method has too many lines. [14/10]
+  def post_login ...
+  ^^^^^^^^^^^^^^
+
+53 files inspected, 4 offenses detected

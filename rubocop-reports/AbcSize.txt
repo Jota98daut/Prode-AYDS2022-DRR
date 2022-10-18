@@ -1,0 +1,22 @@
+Inspecting 53 files
+.......................C..C.C........................
+
+Offenses:
+
+helpers/bet_helper.rb:23:3: C: Metrics/AbcSize: Assignment Branch Condition size for post_bets is too high. [<6, 20, 4> 21.26/17]
+  def post_bets ...
+  ^^^^^^^^^^^^^
+helpers/match_helper.rb:11:3: C: Metrics/AbcSize: Assignment Branch Condition size for post_matches is too high. [<7, 30, 3> 30.95/17]
+  def post_matches ...
+  ^^^^^^^^^^^^^^^^
+helpers/match_helper.rb:32:3: C: Metrics/AbcSize: Assignment Branch Condition size for patch_match is too high. [<5, 21, 0> 21.59/17]
+  def patch_match ...
+  ^^^^^^^^^^^^^^^
+helpers/session_helper.rb:21:3: C: Metrics/AbcSize: Assignment Branch Condition size for post_signup is too high. [<8, 34, 12> 36.93/17]
+  def post_signup ...
+  ^^^^^^^^^^^^^^^
+helpers/session_helper.rb:54:3: C: Metrics/AbcSize: Assignment Branch Condition size for post_login is too high. [<5, 16, 4> 17.23/17]
+  def post_login ...
+  ^^^^^^^^^^^^^^
+
+53 files inspected, 5 offenses detected
