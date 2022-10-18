@@ -7,3 +7,9 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Exclude:
     - 'server.rb'
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+
+
