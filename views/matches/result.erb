@@ -42,7 +42,9 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Winner</th>
-                        <th>By penalties?</th>
+                        <% if @match.stage.penalties %>
+                          <th>By penalties?</th>
+                        <% end %>
                         <th></th>
                     </tr>
                     <tr>
@@ -83,15 +85,19 @@
                             <select id='winner' name='winner' class='form-select form-select-sm form-control form-control-sm' aria-label='form-select-sm example'>
                               <option value=<%= @match.home_id %>><%= @match.home.name %></option>
                               <option value=<%= @match.away_id %>><%= @match.away.name %></option>
-                              <option value='draw'>Draw</option>
+                              <% if not @match.stage.penalties %>
+                                <option value='draw'>Draw</option>
+                              <% end %>
                             </select>
                         </div>
                         </td>
-                        <td>
-                          <div class="d-flex justify-content-center mt-2">
-                          <input id='penalties' class='form-check-input' type='checkbox' name='penalties' value=1>
-                          </div>
-                        </td>
+                        <% if @match.stage.penalties %>
+                          <td>
+                            <div class="d-flex justify-content-center mt-2">
+                            <input id='penalties' class='form-check-input' type='checkbox' name='penalties' value=1>
+                            </div>
+                          </td>
+                        <% end %>
                         <td>
                           <button type='submit' class="btn white green">Update</button>
                         </td>
