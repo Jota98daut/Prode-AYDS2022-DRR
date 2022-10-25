@@ -20,26 +20,13 @@ module SessionHelper
 
   def post_signup
     player = Player.new(params)
-    if player.save
-      Tournament.all.each do |tournament|
-        Score.create player: player, points: 0, tournament: tournament
-      end
-      session[:user_id] = player.id
-      redirect '/' # O será mejor redirigir al login??
-    else
-      if params[:username] == ''
-        flash[:warning] = 'username must be provided'
-      elsif User.find_by(username: params[:username])
-        flash[:warning] = 'username already exists'
-      elsif params[:password] == ''
-        flash[:warning] = 'password must be provided'
-      elsif params[:password_confirmation] == ''
-        flash[:warning] = 'password confirmation must be provided'
-      elsif params[:password] != params[:password_confirmation]
-        flash[:warning] = "passwords don't match"
-      end
+    unless player.save
+      flash[:warning] = error_message(params)
       redirect '/signup'
     end
+    player.create_scores
+    session[:user_id] = player.id
+    redirect '/' # O será mejor redirigir al login??
   end
 
   def get_logout
@@ -52,19 +39,38 @@ module SessionHelper
   end
 
   def post_login
-    user = User.find_by username: params['username']
-    if user     # if there is an user with that username
-      user = user.authenticate params['password']
-      if user   # and the password is correct
-        session[:user_id] = user.id
-        redirect '/'
-      else
-        flash[:warning] = 'incorrect password'
-        redirect '/login'
-      end
-    else
+    user = User.find_by username: params[:username]
+
+    redirect '/login' unless auth_user(user, params[:password])
+
+    session[:user_id] = user.id
+    redirect '/'
+  end
+
+  def auth_user(user, password)
+    unless user # if there is an user with that username
       flash[:warning] = "user doesn't exist"
-      redirect 'login'
+      return false
+    end
+
+    unless user.authenticate password  # and the password is correct
+      flash[:warning] = 'incorrect password'
+      return false
+    end
+    true
+  end
+
+  def error_message(params)
+    username = params[:username]
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    if (username == '') || (password == '')
+      'username and password must be provided'
+    elsif User.find_by(username: username)
+      'username already exists'
+    elsif password != password_confirmation
+      "passwords don't match"
     end
   end
 end

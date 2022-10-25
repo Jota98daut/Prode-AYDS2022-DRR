@@ -16,6 +16,12 @@ class Player < User
   def score_for(tournament_id)
     Score.find_by(player_id: id, tournament_id: tournament_id).points
   end
+
+  def create_scores
+    Tournament.all.each do |tournament|
+      Score.create(player: player, points: 0, tournament: tournament)
+    end
+  end
 end
 
 class Admin < User

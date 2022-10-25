@@ -1,0 +1,15 @@
+inherit_from: .rubocop_todo.yml
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/schema.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'server.rb'
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+
+
