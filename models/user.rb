@@ -19,7 +19,7 @@ class Player < User
 
   def create_scores
     Tournament.all.each do |tournament|
-      Score.create(player: player, points: 0, tournament: tournament)
+      Score.create(player_id: id, points: 0, tournament: tournament)
     end
   end
 end
