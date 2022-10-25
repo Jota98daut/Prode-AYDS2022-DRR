@@ -47,6 +47,11 @@ module SessionHelper
     redirect '/'
   end
 
+  def get_profile 
+    @user = User.find_by(id: params[:id])
+    erb :'users/profile'
+  end
+
   def auth_user(user, password)
     unless user # if there is an user with that username
       flash[:warning] = "user doesn't exist"

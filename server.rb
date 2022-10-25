@@ -199,6 +199,10 @@ class App < Sinatra::Application
     get_rankings
   end
 
+  get '/user/:id' do
+    get_profile
+  end
+
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
