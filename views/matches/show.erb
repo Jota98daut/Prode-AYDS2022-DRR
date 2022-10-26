@@ -29,65 +29,146 @@ html {
         <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
       </form>
     </nav>
-    <div class="container w-75 my-5"> 
-      <div class="row my-3"><h3>Match</h3> </div>
 
-      <div class="" id="tablescroll"> 
-        <div class="row my-3"><h4> Bets count </h4></div>
-        <table class="row rounded table responsive table-dark table-striped white">
-          <tr>
-            <th>Type</th>
-            <th>Count</th>
-          </tr>
-          <tr>
-            <td><%= @match.home.name %> wins</td>
-            <td><%= @home_wins_bets.length %></td>
-          </tr>
-          <tr>
-            <td><%= @match.away.name %> wins</td>
-            <td><%= @away_wins_bets.length %></td>
-          </tr>
+    <div class="container w-75">
+      <div class="row my-3"><h1>Match</h1></div>
 
+      <div class="row d-flex d-flex-row justify-content-center">
+        <div class="row"><h3 class="text-center">Bets count</h3></div>
+        <div class="row w-75 mb-5">
+          <table class="table table-dark table-striped">
+            <thead>
+              <th>Type</th>
+              <th>Count</th>
+            </thead>
+            <tbody>
+              <% if @match.stage.penalties %>
+                <tr>
+                  <td><%= @match.home.name %> wins in game</td>
+                  <td><%= @home_wins_by_goals_bets.length %></td>
+                </tr>
+                <tr>
+                  <td><%= @match.away.name %> wins in game</td>
+                  <td><%= @away_wins_by_goals_bets.length %></td>
+                </tr>
+                <tr>
+                  <td><%= @match.home.name %> wins by penalties</td>
+                  <td><%= @home_wins_penalties_bets.length %></td>
+                </tr>
+                <tr>
+                  <td><%= @match.away.name %> wins by penalties</td>
+                  <td><%= @away_wins_penalties_bets.length %></td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td><%= @match.home.name %> wins</td>
+                  <td><%= @home_wins_by_goals_bets.length %></td>
+                </tr>
+                <tr>
+                  <td><%= @match.away.name %> wins</td>
+                  <td><%= @away_wins_by_goals_bets.length %></td>
+                </tr>
+                <tr>
+                  <td>Draw</td>
+                  <td><%= @draw_bets.length %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row"><h3 class="text-center">Bets set by type</h3></div>
+
+        <div class="row text-center">
           <% if @match.stage.penalties %>
-            <tr>
-              <td><%= @match.home.name %> wins by penalties</td>
-              <td><%= @home_wins_penalties_bets.length %></td>
-            </tr>
-            <tr>
-              <td><%= @match.away.name %> wins by penalties</td>
-              <td><%= @away_wins_penalties_bets.length %></td>
-            </tr>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.home.name %> wins in game</th>
+                </tr>
+                <% @home_wins_by_goals_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.away.name %> wins in game</th>
+                </tr>
+                <% @away_wins_by_goals_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.home.name %> wins by penalties</th>
+                </tr>
+                <% @home_wins_penalties_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.away.name %> wins by penalties</th>
+                </tr>
+                <% @away_wins_penalties_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
 
           <% else %>
-            <tr>
-              <td>Draw</td>
-              <td><%= @draw_bets.length %></td>
-            </tr>
-          <% end %>
-        </table>
 
-        <div class="row my-3"><h4> Bets list </h4></div>
-        <table class="row rounded table responsive table-dark table-striped white">
-          <tr>
-            <th>Player</th>
-            <th>Placed bet</th>
-          </tr>
-          <% @match.bets.each do |bet| %>
-            <td><%= bet.player.username %></td>
-            <td><%= if bet.team
-              if bet.draw
-                bet.team.name + " wins by penalties" 
-              else
-                bet.team.name + " wins"
-              end
-            else
-              "Draw"
-            end %></td>
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.home.name %> wins in game</th>
+                </tr>
+                <% @home_wins_by_goals_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th><%= @match.away.name %> wins in game</th>
+                </tr>
+                <% @away_wins_by_goals_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
+            <div class="col p-0">
+              <table class="table table-dark tablescroll">
+                <tr>
+                  <th>Draw</th>
+                </tr>
+                <% @draw_bets.each do |bet| %>
+                  <tr> <td><%= bet.player.username %></td> </tr>
+                <% end %>
+              </table>
+            </div>
+
           <% end %>
-        </table>
+        </div>
       </div>
 
+      <div class="row">
+      </div>
     </div>
+
     <div class="container-fliud p-3 pt-2 grey2 ">
       <div class="row justify-content-center">
         <h3 class="text-center">Group 3</h2>

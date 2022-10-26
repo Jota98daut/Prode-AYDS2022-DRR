@@ -29,11 +29,11 @@ module MatchHelper
 
   def get_match
     @match = Match.find_by(id: params[:id])
-    @home_wins_bets = @match.bets.where(team: @match.home)
+    @home_wins_by_goals_bets = @match.bets.where(team: @match.home, draw: nil)
     @home_wins_penalties_bets = @match.bets.where(team: @match.home, draw: true)
-    @away_wins_bets = @match.bets.where(team: @match.away)
+    @away_wins_by_goals_bets = @match.bets.where(team: @match.away, draw: nil)
     @away_wins_penalties_bets = @match.bets.where(team: @match.away, draw: true)
-    @draw_bets = @match.bets.where(draw: true)
+    @draw_bets = @match.bets.where(team: nil, draw: true)
 
     erb :'matches/show'
   end
