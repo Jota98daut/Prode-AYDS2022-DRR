@@ -21,10 +21,21 @@ module MatchHelper
     redirect "/matches/new?tournament_id=#{tournament_id}"
   end
 
-  def get_match
+  def get_match_edit
     @match = Match.find_by(id: params[:id])
     @teams = Team.all
     erb :'matches/edit'
+  end
+
+  def get_match
+    @match = Match.find_by(id: params[:id])
+    @home_wins_bets = @match.bets.where(team: @match.home)
+    @home_wins_penalties_bets = @match.bets.where(team: @match.home, draw: true)
+    @away_wins_bets = @match.bets.where(team: @match.away)
+    @away_wins_penalties_bets = @match.bets.where(team: @match.away, draw: true)
+    @draw_bets = @match.bets.where(draw: true)
+
+    erb :'matches/show'
   end
 
   def patch_match
