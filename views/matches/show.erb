@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Match</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+  </head>
+  <style>
+html {
+  height: 100%;
+}
+        body {
+          height: 100%;
+        }
+        a { 
+          text-decoration: none; 
+          color: black;
+        } 
+  </style>
+  <body class="grey3 text-light">
+    <nav class="navbar gradientgreen py-2">
+      <a class="navbar-brand mx-3" href="/">
+        <img src="/logo/navbarlogo.png" width="165" class="d-inline-block align-top" alt="">
+      </a>
+      <form action='/logout' method='GET'>
+        <%= @current_user.username %>
+        <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
+      </form>
+    </nav>
+    <div class="container w-75 my-5"> 
+      <div class="row my-3"><h3>Match</h3> </div>
+
+      <div class="" id="tablescroll"> 
+        <div class="row my-3"><h4> Bets count </h4></div>
+        <table class="row rounded table responsive table-dark table-striped white">
+          <tr>
+            <th>Type</th>
+            <th>Count</th>
+          </tr>
+          <tr>
+            <td><%= @match.home.name %> wins</td>
+            <td><%= @home_wins_bets.length %></td>
+          </tr>
+          <tr>
+            <td><%= @match.away.name %> wins</td>
+            <td><%= @away_wins_bets.length %></td>
+          </tr>
+
+          <% if @match.stage.penalties %>
+            <tr>
+              <td><%= @match.home.name %> wins by penalties</td>
+              <td><%= @home_wins_penalties_bets.length %></td>
+            </tr>
+            <tr>
+              <td><%= @match.away.name %> wins by penalties</td>
+              <td><%= @away_wins_penalties_bets.length %></td>
+            </tr>
+
+          <% else %>
+            <tr>
+              <td>Draw</td>
+              <td><%= @draw_bets.length %></td>
+            </tr>
+          <% end %>
+        </table>
+
+        <div class="row my-3"><h4> Bets list </h4></div>
+        <table class="row rounded table responsive table-dark table-striped white">
+          <tr>
+            <th>Player</th>
+            <th>Placed bet</th>
+          </tr>
+          <% @match.bets.each do |bet| %>
+            <td><%= bet.player.username %></td>
+            <td><%= if bet.team
+              if bet.draw
+                bet.team.name + " wins by penalties" 
+              else
+                bet.team.name + " wins"
+              end
+            else
+              "Draw"
+            end %></td>
+          <% end %>
+        </table>
+      </div>
+
+    </div>
+    <div class="container-fliud p-3 pt-2 grey2 ">
+      <div class="row justify-content-center">
+        <h3 class="text-center">Group 3</h2>
+      </div>
+      <div class="row py-0 justify-content-center">
+        D'Autilio Joel, Rojo Jonathan, Rossi Pablo.
+      </div>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+  </body>
+</html>
