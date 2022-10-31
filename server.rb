@@ -203,6 +203,14 @@ class App < Sinatra::Application
     get_profile
   end
 
+  patch '/user/:id' do
+    patch_user
+  end
+
+  get '/user/avatar/:id' do
+    patch_avatar
+  end
+  
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])

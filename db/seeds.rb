@@ -2,7 +2,11 @@
 
 # Create admin user
 
-Admin.create username: 'admin', password: 'admin', password_confirmation: 'admin'
+Admin.create username: 'admin', password: 'admin', email: 'admin@gmail.com', password_confirmation: 'admin'
+
+# Create player user
+
+Player.create username: 'player', password: 'player', email: 'player@gmail.com', password_confirmation: 'player'
 
 # Create sports
 

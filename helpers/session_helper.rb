@@ -52,6 +52,19 @@ module SessionHelper
     erb :'users/profile'
   end
 
+  def patch_user
+    User.find_by(id: params[:id]).update(username: params[:new_name])
+    redirect '/user/' + params[:id]
+  end
+
+  def patch_avatar
+    user = User.find_by(id: params[:id])
+    if not user.update(avatar: params[:new_avatar])
+      redirect '/lobby'
+    end
+    redirect '/user/' + params[:id]
+  end
+
   def auth_user(user, password)
     unless user # if there is an user with that username
       flash[:warning] = "user doesn't exist"

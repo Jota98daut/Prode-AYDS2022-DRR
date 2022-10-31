@@ -18,15 +18,108 @@
             text-decoration: none; 
             color: black;
         } 
+        .col{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;    
+        }
+        .cfg1{
+            display: flex;
+            justify-content: end; 
+        }
+        .cfg2{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center; 
+        }
     </style>
-    <body class="gradientgrey text-light">
+    <body class="grey text-light">
         <nav class="navbar gradientgreen py-2">
             <a class="navbar-brand mx-3" href="/">
                 <img src="/logo/navbarlogo.png" width="165" class="d-inline-block align-top" alt="">
             </a>
+            <form action='/logout' method='GET'>
+                <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
+            </form>
         </nav>
         <div class="container w-75 my-3 h-100"> 
-            
+            <div class="row mt-4 w-100"><h3>Profile</h3>
+            </div>
+            <div class="row d-flex justify-content-evenly">    
+                <div class="col">
+                    <table class="table responsive table-dark stripedd w-100 white">
+                        <tbody>
+                                <tr>   
+                                    <td>Username: <%= @user.username %> 
+                                    </td>
+                                    <td class="cfg1">
+                                        <button class='rename_button btn white green mx-1' name=<%=@user.id%> type='submit' >Change</button>
+                                        <form id=#{user.id} action="/user/<%=@user.id%>" method='POST'>
+                                        </form>
+                                    </td>
+                                <tr>   
+                                    <td>Email: <%= @user.email %></td>
+                                    <td></td>
+                                </tr>
+                                <tr>   
+                                    <td class="type-password">Password: ●●●●●●
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <div class= "row">
+                        <img src="<%= @current_user.avatar %>" width="175" height="175" alt="user avatar photo">
+                    </div>
+                    
+                </div>
+			</div>
+            <div class="row mt-0">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <div class= "row mt-2">
+                        <%= @current_user.username %>
+                    </div>
+                    <div class= "row">
+                        <%= @current_user.bets.size %> bets played
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4"><h4>Choose your avatar!</h4>
+            </div>
+            <div class="row d-flex justify-content mb-5">
+                <div class="col justify-content-center">
+                    <a href="/user/avatar/<%=@current_user.id%>?new_avatar=/images/avatar1.png">
+                        <img src="/images/avatar1.png" width="175" height="175" alt="user avatar1 photo">
+                    </a>
+                </div>
+                <div class="col justify-content-center">
+                    <a href="/">
+                        <img src="/images/avatar2.png" width="175" height="175" alt="user avatar2 photo">
+                    </a>
+                </div>
+                <div class="col justify-content-center">
+                    <a href="/">
+                        <img src="/images/avatar3.png" width="175" height="175" alt="user avatar3 photo">
+                    </a>
+                </div>
+                <div class="col justify-content-center">
+                    <a href="/">
+                        <img src="/images/avatar4.png" width="175" height="175" alt="user avatar4 photo">
+                    </a>
+                </div>
+                <div class="col justify-content-center">
+                    <a href="/">
+                        <img src="/images/avatar5.png" width="175" height="175" alt="user avatar5 photo">
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="container-fliud p-3 pt-2 grey2 ">
             <div class="row justify-content-center">
@@ -41,6 +134,7 @@
                 </a>
             </div>
         </div> 
+        <script src='/scripts/rename_users.js'></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
