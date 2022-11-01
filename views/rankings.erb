@@ -48,9 +48,13 @@
                     <tr>
                         <th>Username</th>
                         <th>Points</th>
+                        <th></th>
                     </tr>
                     <% @scores.each do |score| %>
                         <tr>
+                            <td>
+                                <img src="<%= score.player.user_profile.avatar %>" width="50" height="50" alt="user avatar photo">
+                            </td>
                             <td><%= score.player.username %></td>
                             <td><%= score.points %></td>
                         </tr>

@@ -275,7 +275,7 @@ Tournament.create name: 'World Table Tennis Championship 2022', sport: tabletenn
 
 # Create scores
 
-Score.create player: player, tournament:worldcup 
+Score.create player: player, tournament:worldcup, points: 0
 
 # Create stages
 
