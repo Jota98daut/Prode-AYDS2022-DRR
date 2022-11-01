@@ -212,10 +212,25 @@ class App < Sinatra::Application
   end
   
   before do
+    public_pages = ['/', '/login', '/signup', '/info']
+    admin_pages = Regexp.union(
+                  [
+                   /^\/logout$/,/^\/admin$/, 
+                   /^\/sports$/, /^\/sports\/(\d)+$/, 
+                   /^\/tournaments$/, /^\/tournaments\/(\d)+$/, /^\/tournaments\/new$/,
+                   /^\/stages$/, /^\/stages\/(\d)+$/, /^\/stages\/new$/,
+                   /^\/matches$/, /^\/matches\/(\d)+$/, /^\/matches\/new$/, /^\/matches\/result\/(\d)+$/,
+                   /^\/teams$/, /^\/teams\/(\d)+$/, /^\/teams\/new$/,
+                  ])
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])
+      if(@current_user.type == "Player" and request.path_info.match?(admin_pages))
+        redirect '/' unless request.path_info == "/logout"
+      end
+      if @current_user.type == "Admin"
+        redirect '/' unless request.path_info.match?(admin_pages) or public_pages.include?(request.path_info)
+      end
     else
-      public_pages = ['/', '/login', '/signup', '/info']
       redirect '/login' unless public_pages.include?(request.path_info)
     end
   end
