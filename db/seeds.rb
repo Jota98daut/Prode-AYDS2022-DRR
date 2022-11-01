@@ -2,7 +2,12 @@
 
 # Create admin user
 
-Admin.create username: 'admin', password: 'admin', password_confirmation: 'admin'
+admin = Admin.create username: 'admin', password: 'admin', password_confirmation: 'admin'
+UserProfile.create(user: admin, email: 'admin@mail.com')
+# Create player user
+
+player = Player.create username: 'player', password: 'player', password_confirmation: 'player'
+UserProfile.create(user: player, email: 'player@mail.com')
 
 # Create sports
 
@@ -267,6 +272,10 @@ Tournament.create name: 'Copa América 2021', sport: football
 Tournament.create name: 'FIBA Basketball World Cup 2019', sport: basketball
 Tournament.create name: 'IEM Rio Major 2022', sport: csgo
 Tournament.create name: 'World Table Tennis Championship 2022', sport: tabletennis
+
+# Create scores
+
+Score.create player: player, tournament:worldcup 
 
 # Create stages
 

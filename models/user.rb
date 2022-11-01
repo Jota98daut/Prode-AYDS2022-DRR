@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   has_secure_password
+  has_one :user_profile
 
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
@@ -25,4 +26,8 @@ class Player < User
 end
 
 class Admin < User
+end
+
+class UserProfile < ActiveRecord::Base
+  belongs_to :user
 end

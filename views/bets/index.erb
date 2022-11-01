@@ -28,14 +28,18 @@
     </head>
     <body class="grey3 text-light">
         <nav class="navbar gradientgreen py-2">
-            <a class="navbar-brand mx-3" href="/">
-                <img src="/logo/navbarlogo.png" width="165" class="d-inline-block align-top" alt="">
-            </a>
-            <form action='/logout' method='GET'>
-                <b><%=@score.points%> Points | </b>
-                <%= @current_user.username %>
-                <button class="mx-3 btn btn-outline-light btm-sm" type="submit">Log out</button>
-            </form>
+            <div class="col d-flex justify-content-start">
+                <a class="navbar-brand mx-3" href="/">
+                    <img src="/logo/navbarlogo.png" width="165" class="d-inline-block align-top" alt="">
+                </a>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <div class="white navbar mx-1"><%=@score.points%> Points |</div> 
+                <a class="navbar white btm-sm pt-2" href="/user/<%=@current_user.id %>"><%= @current_user.username %>  <img src="<%= @current_user.user_profile.avatar %>" width="30" height="30" class="d-inline-block align-top mx-1" alt="user avatar"></a>
+                <form action='/logout' method='GET'>
+                    <button class="mx-3 mt-1 btn btn-outline-light btm-sm" type="submit">Log out</button>
+                </form>
+            </div>
         </nav>
         <div class="container w-75 my-5"> 
             <div class="row my-3"><h3> <%= @tournament.name %> </h3>

@@ -203,6 +203,14 @@ class App < Sinatra::Application
     get_rankings
   end
 
+  get '/user/:id' do
+    get_profile
+  end
+
+  get '/user/avatar/:id' do
+    patch_avatar
+  end
+  
   before do
     public_pages = ['/', '/login', '/signup', '/info']
     admin_pages = Regexp.union(
