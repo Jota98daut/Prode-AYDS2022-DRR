@@ -151,7 +151,11 @@ class App < Sinatra::Application
     get_match
   end
 
-  patch '/matches/:id' do
+  get '/matches/patch/:id' do
+    get_match_edit
+  end
+
+  patch '/matches/patch/:id' do
     patch_match
   end
 
