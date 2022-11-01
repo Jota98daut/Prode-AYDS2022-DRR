@@ -151,7 +151,11 @@ class App < Sinatra::Application
     get_match
   end
 
-  patch '/matches/:id' do
+  get '/matches/patch/:id' do
+    get_match_edit
+  end
+
+  patch '/matches/patch/:id' do
     patch_match
   end
 
@@ -199,6 +203,14 @@ class App < Sinatra::Application
     get_rankings
   end
 
+  get '/user/:id' do
+    get_profile
+  end
+
+  get '/user/avatar/:id' do
+    patch_avatar
+  end
+  
   before do
     if session[:user_id]
       @current_user = User.find_by(id: session[:user_id])

@@ -2,6 +2,7 @@
 
 class User < ActiveRecord::Base
   has_secure_password
+  has_one :user_profile
 
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
@@ -19,10 +20,14 @@ class Player < User
 
   def create_scores
     Tournament.all.each do |tournament|
-      Score.create(player: player, points: 0, tournament: tournament)
+      Score.create(player_id: id, points: 0, tournament: tournament)
     end
   end
 end
 
 class Admin < User
+end
+
+class UserProfile < ActiveRecord::Base
+  belongs_to :user
 end
