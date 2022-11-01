@@ -203,10 +203,6 @@ class App < Sinatra::Application
     get_profile
   end
 
-  patch '/user/:id' do
-    patch_user
-  end
-
   get '/user/avatar/:id' do
     patch_avatar
   end

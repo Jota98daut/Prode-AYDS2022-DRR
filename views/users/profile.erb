@@ -24,16 +24,6 @@
             justify-content: center;
             align-items: center;    
         }
-        .cfg1{
-            display: flex;
-            justify-content: end; 
-        }
-        .cfg2{
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center; 
-        }
     </style>
     <body class="grey text-light">
         <nav class="navbar gradientgreen py-2">
@@ -54,13 +44,10 @@
                                 <tr>   
                                     <td>Username: <%= @user.username %> 
                                     </td>
-                                    <td class="cfg1">
-                                        <button class='rename_button btn white green mx-1' name=<%=@user.id%> type='submit' >Change</button>
-                                        <form id=#{user.id} action="/user/<%=@user.id%>" method='POST'>
-                                        </form>
+                                    <td>
                                     </td>
                                 <tr>   
-                                    <td>Email: <%= @user.email %></td>
+                                    <td>Email: <%= @user.user_profile.email %></td>
                                     <td></td>
                                 </tr>
                                 <tr>   
@@ -74,9 +61,8 @@
                 </div>
                 <div class="col">
                     <div class= "row">
-                        <img src="<%= @current_user.avatar %>" width="175" height="175" alt="user avatar photo">
+                        <img src="<%= @current_user.user_profile.avatar %>" width="175" height="175" alt="user avatar photo">
                     </div>
-                    
                 </div>
 			</div>
             <div class="row mt-0">
@@ -100,22 +86,22 @@
                     </a>
                 </div>
                 <div class="col justify-content-center">
-                    <a href="/">
+                    <a href="/user/avatar/<%=@current_user.id%>?new_avatar=/images/avatar2.png">
                         <img src="/images/avatar2.png" width="175" height="175" alt="user avatar2 photo">
                     </a>
                 </div>
                 <div class="col justify-content-center">
-                    <a href="/">
+                    <a href="/user/avatar/<%=@current_user.id%>?new_avatar=/images/avatar3.png">
                         <img src="/images/avatar3.png" width="175" height="175" alt="user avatar3 photo">
                     </a>
                 </div>
                 <div class="col justify-content-center">
-                    <a href="/">
+                    <a href="/user/avatar/<%=@current_user.id%>?new_avatar=/images/avatar4.png">
                         <img src="/images/avatar4.png" width="175" height="175" alt="user avatar4 photo">
                     </a>
                 </div>
                 <div class="col justify-content-center">
-                    <a href="/">
+                    <a href="/user/avatar/<%=@current_user.id%>?new_avatar=/images/avatar5.png">
                         <img src="/images/avatar5.png" width="175" height="175" alt="user avatar5 photo">
                     </a>
                 </div>

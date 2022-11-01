@@ -32,7 +32,7 @@
             </div>
             <div class="col d-flex justify-content-end">
                 <div class="white navbar mx-1"><%=@score.points%> Points |</div> 
-                <a class="navbar white btm-sm pt-2" href="/user/<%=@current_user.id %>"><%= @current_user.username %>  <img src="<%= @current_user.avatar %>" width="30" height="30" class="d-inline-block align-top mx-1" alt="user avatar"></a>
+                <a class="navbar white btm-sm pt-2" href="/user/<%=@current_user.id %>"><%= @current_user.username %>  <img src="<%= @current_user.user_profile.avatar %>" width="30" height="30" class="d-inline-block align-top mx-1" alt="user avatar"></a>
                 <form action='/logout' method='GET'>
                     <button class="mx-3 mt-1 btn btn-outline-light btm-sm" type="submit">Log out</button>
                 </form>

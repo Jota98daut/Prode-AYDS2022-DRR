@@ -19,14 +19,15 @@ module SessionHelper
   end
 
   def post_signup
-    player = Player.new(params)
+    player = Player.new(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
     unless player.save
       flash[:warning] = error_message(params)
       redirect '/signup'
     end
+    profile = UserProfile.create(user: player, email: params[:email])
     player.create_scores
     session[:user_id] = player.id
-    redirect '/' # O será mejor redirigir al login??
+    redirect '/'
   end
 
   def get_logout
@@ -52,16 +53,10 @@ module SessionHelper
     erb :'users/profile'
   end
 
-  def patch_user
-    User.find_by(id: params[:id]).update(username: params[:new_name])
-    redirect '/user/' + params[:id]
-  end
-
   def patch_avatar
-    user = User.find_by(id: params[:id])
-    if not user.update(avatar: params[:new_avatar])
-      redirect '/lobby'
-    end
+    user = User.find(params[:id])
+    user.user_profile.avatar = params[:new_avatar]
+    user.user_profile.save
     redirect '/user/' + params[:id]
   end
 
