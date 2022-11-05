@@ -219,7 +219,7 @@ class App < Sinatra::Application
                    /^\/sports$/, /^\/sports\/(\d)+$/, 
                    /^\/tournaments$/, /^\/tournaments\/(\d)+$/, /^\/tournaments\/new$/,
                    /^\/stages$/, /^\/stages\/(\d)+$/, /^\/stages\/new$/,
-                   /^\/matches$/, /^\/matches\/(\d)+$/, /^\/matches\/new$/, /^\/matches\/result\/(\d)+$/,
+                   /^\/matches$/, /^\/matches\/patch\/(\d)+$/, /^\/matches\/new$/, /^\/matches\/result\/(\d)+$/,
                    /^\/teams$/, /^\/teams\/(\d)+$/, /^\/teams\/new$/,
                   ])
     if session[:user_id]
